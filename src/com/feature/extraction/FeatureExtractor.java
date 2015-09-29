@@ -68,9 +68,8 @@ public class FeatureExtractor {
             wordFreqMap.put(word, (freq == null) ? 1 : freq + 1); //For Each word the count will be incremented in the Hashmap
         }
 
-       //
+      
         //System.out.println("The Words and their frequencies-->");
-
         return wordFreqMap;
     }
 

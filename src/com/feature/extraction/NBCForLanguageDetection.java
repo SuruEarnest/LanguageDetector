@@ -113,6 +113,7 @@ public class NBCForLanguageDetection {
             }
 
         }
+
         return docString;
     }
 
@@ -129,7 +130,7 @@ public class NBCForLanguageDetection {
             double count1 = countInClass(testData, allDocsInClass(languageClass)) + 1;
             //System.out.println("count1 = " + count1);
 
-            double count2 = countInClass(vocabToString(), allDocsInClass(languageClass)) + getVocabulary().size();
+            double count2 = countInClass(vocabularyToString(), allDocsInClass(languageClass)) + getVocabulary().size();
             //System.out.println("count2 = " + count2);
 
             double aposterioriProb = count1 / count2;
@@ -214,7 +215,7 @@ public class NBCForLanguageDetection {
         return this.vocabulary;
     }
 
-    public String vocabToString() {
+    public String vocabularyToString() {
 
         String vocabString = "";
         Set<String> vocab = this.getVocabulary();

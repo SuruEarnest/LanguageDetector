@@ -138,6 +138,7 @@ public class NearestNeighbour {
     public static void main(String[] args) {
 
         //Training the kNN algorithm with test data....
+        
         ArrayList<NearestNeighbour.DataEntry> data = new ArrayList<NearestNeighbour.DataEntry>();
         data.add(new DataEntry(new double[]{175, 80}, "Male"));
         data.add(new DataEntry(new double[]{193.5, 110}, "Male"));

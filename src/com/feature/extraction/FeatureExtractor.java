@@ -9,14 +9,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Steps: 1.Removing stop words. 2
- * .Stemming 3.keywords frequency calculation
+ * Steps: 1.Removing stop words. 2 .Stemming 3.keywords frequency calculation
  *
  */
 public class FeatureExtractor {
 
     public String preProcessing(/*String fileName*/) {
-        return new String(""); 
+        return new String("");
     }
 
     public String callStemmer(String word) {
@@ -68,7 +67,6 @@ public class FeatureExtractor {
             wordFreqMap.put(word, (freq == null) ? 1 : freq + 1); //For Each word the count will be incremented in the Hashmap
         }
 
-      
         //System.out.println("The Words and their frequencies-->");
         return wordFreqMap;
     }
@@ -77,8 +75,9 @@ public class FeatureExtractor {
 
         //1.Remove Stop words...2.Stemming  3.Word Frequency Calculation
         System.out.println("Stop word base:");
-       //System.out.println(new FeatureExtractor().getWordFrequencies("That Girl went to the baba's house.I can't imagine myself going to such a place as horrible as that"));
-       HashMap<String,Integer> x = new FeatureExtractor().getWordFrequencies("That Girl went to the baba's house.I can't imagine myself going to such a place as horrible as that");
-       int count = x.get("that");System.out.println(count);
+        //System.out.println(new FeatureExtractor().getWordFrequencies("That Girl went to the baba's house.I can't imagine myself going to such a place as horrible as that"));
+        HashMap<String, Integer> x = new FeatureExtractor().getWordFrequencies("That Girl went to the baba's house.I can't imagine myself going to such a place as horrible as that");
+        int count = x.get("that");
+        System.out.println(count);
     }
 }

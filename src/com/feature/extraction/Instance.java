@@ -6,11 +6,8 @@
 package com.feature.extraction;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,10 +18,11 @@ import java.util.logging.Logger;
 public class Instance {
 
     private String testDoc;
-    
+   
     public Instance() {
-        //for parameterless constructor
-       
+          
+    //for parameterless constructor
+
     }
 
     public Instance(File textFile) {
@@ -44,12 +42,8 @@ public class Instance {
 
                 fileContentInString = new String(contentArray);
                 this.testDoc = fileContentInString;
-            }
-            else if(textFile.isDirectory())
-            {
-              File files [] = textFile.listFiles();
-            }
 
+            }
         } catch (IOException ex) {
             Logger.getLogger(FeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         }

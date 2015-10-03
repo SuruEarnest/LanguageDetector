@@ -6,14 +6,16 @@
 package com.feature.extraction;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Set;
 
 /**
- * @author suruearnest
+ * @author Suru Earnest under the supervision of Victor Odumuyiwa(Ph.D),Computer Science,University of Lagos,Akoka.
  */
 public class NBCForLanguageDetection {
 
@@ -27,8 +29,7 @@ public class NBCForLanguageDetection {
     private HashMap<String, Double> nbProbMap = new HashMap<>();
 
     public NBCForLanguageDetection() {
-        loadTrainingData();
-        buildVocabulary(trainingCorpus);
+
     }
 
     private void loadTrainingData() {
@@ -53,6 +54,7 @@ public class NBCForLanguageDetection {
 
         englishDocs.add(docEng1);
         englishDocs.add(docEng2);
+
         frenchDocs.add(docFrench);
         frenchDocs.add(docFrench2);
 
@@ -121,6 +123,7 @@ public class NBCForLanguageDetection {
         ListIterator<String> languageClassesListIt = langClassesList.listIterator();
 
         HashMap<String, Double> nbp = new HashMap<>();
+
         while (languageClassesListIt.hasNext()) {
             String languageClass = languageClassesListIt.next();
 
@@ -147,12 +150,12 @@ public class NBCForLanguageDetection {
         int sumOfCount = 0;
         FeatureExtractor fe = new FeatureExtractor();
         HashMap<String, Integer> wordFreqMap = fe.getWordFrequencies(allDocsInClass);
-        Set keyObj = wordFreqMap.keySet();
+
         String tokenArray[] = words.toLowerCase().split(" ");
 
         for (int i = 0; i < tokenArray.length; i++) {
 
-            if (keyObj.contains(tokenArray[i])) {
+            if (wordFreqMap.containsKey(tokenArray[i])) {
                 int count = wordFreqMap.get(tokenArray[i]);
                 sumOfCount = sumOfCount + count;
             } else {
@@ -234,18 +237,58 @@ public class NBCForLanguageDetection {
 
     }
 
+    private double highestValue(Collection<Double> val) {
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double valu = 0.0, max = 0.0;
+        Iterator it = val.iterator();
+
+        while (it.hasNext()) {
+
+            valu = Double.parseDouble(it.next().toString());
+            if (max <= valu) {
+                max = valu;
+            }
+        }
+
+        return max;
+    }
+
     public String predictUsingNaiveBayes(Instance inst) {
 
         String textValue = inst.loadData();
+        HashMap<String, Double> x = naiveBayesProbabilities(getLanguageClasses(), textValue);
+        double highestProbability = highestValue(x.values());
+        String language = getLanguageFromProbabilityMap(x, highestProbability);
 
-        return "";
+        return language;
+    }
+
+    public String getLanguageFromProbabilityMap(HashMap<String, Double> probMap, double value) {
+
+        Double d = new Double("" + value + "");
+        String languageKey = null;
+
+        for (Map.Entry entry : probMap.entrySet()) {
+            if (d.equals(entry.getValue())) {
+                languageKey = entry.getKey().toString();
+                break; //break out because it is assumed to be a one to one map,no other value is assigned to such ket
+            }
+        }
+
+        return languageKey;
     }
 
     public static void main(String args[]) {
 
         NBCForLanguageDetection ld = new NBCForLanguageDetection();
-        HashMap<String, Double> x = ld.naiveBayesProbabilities(ld.getLanguageClasses(), "Three of them, Matthew, Mark, and Luke, are known as the Synoptic Gospels, from the Greek σύν (syn \"together\") and ὄψις (opsis \"view\").[67][68][69] They are similar in content, narrative arrangement, language and paragraph structure.[67][68] Scholars generally agree that it is impossible to find any direct literary relationship between the Synoptic Gospels and the Gospel of John.[70] While the flow of some events (such as Jesus' baptism, transfiguration, crucifixion and interactions with the apostles) are shared among the Synoptic Gospels, incidents such as the transfiguration do not appear in John, which also differs on other matters, such as the Cleansing of the Temple.[71]");
-        System.out.println(x);
+        ld.trainUsingNaiveBayes();
 
+        Instance inst = new Instance("Don't tell me it works like that");
+
+        String lang = ld.predictUsingNaiveBayes(inst);
+        System.out.println("the predicted Language is = " + lang);
+        
+        //System.out.println(ld.getVocabulary().size());
     }
+
 }

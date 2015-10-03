@@ -8,10 +8,13 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  * Steps: 1.Removing stop words. 2 .Stemming 3.keywords frequency calculation
  *
  */
+
+
 public class FeatureExtractor {
 
     public String preProcessing(/*String fileName*/) {
@@ -37,6 +40,7 @@ public class FeatureExtractor {
 
         String fileContentInString = null;
         FileInputStream fis;
+
         try {
 
             byte[] contentArray = new byte[0];

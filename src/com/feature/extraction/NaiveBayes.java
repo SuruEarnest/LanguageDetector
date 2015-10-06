@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public class NaiveBayes {
 
-    Dataset datasetObject = new Dataset();
+    DataSet datasetObject = new DataSet();
 
     private HashMap<String, Double> priorProbMap = new HashMap<>();
     private HashMap<String, Double> nbProbMap = new HashMap<>();
@@ -30,6 +30,7 @@ public class NaiveBayes {
     }
 
     private HashMap<String, Double> naiveBayesProbabilities(ArrayList<String> langClassesList, String testData) {
+
         ListIterator<String> languageClassesListIt = langClassesList.listIterator();
 
         HashMap<String, Double> nbp = new HashMap<>();
@@ -98,7 +99,7 @@ public class NaiveBayes {
     public void trainUsingNaiveBayes() {
 
         datasetObject.loadTrainingData();
-        datasetObject.buildVocabulary(datasetObject.getTrainingCorpus());
+        datasetObject.buildVocabulary(datasetObject.getTrainingCorpusMap());
 
     }
 
@@ -121,6 +122,7 @@ public class NaiveBayes {
     public String predictUsingNaiveBayes(Instance inst) {
 
         String textValue = inst.loadData();
+        System.out.println("preprocessed text value = " + textValue);
         HashMap<String, Double> x = naiveBayesProbabilities(datasetObject.getLanguageClasses(), textValue);
         double highestProbability = highestValue(x.values());
         String language = getPredictedLanguage(x, highestProbability);
@@ -145,16 +147,19 @@ public class NaiveBayes {
 
     public static void main(String args[]) {
 
+    
         NaiveBayes ld = new NaiveBayes();
         ld.trainUsingNaiveBayes();
 
         // Instance inst = new Instance("Don't tell me it works like that");
-        Instance inst = new Instance("I told him i was not involved in the incident yesterday.");
+        Instance inst = new Instance("I told him i'd not be involved in the task yesterday because I'm going home.I am a very honest person,did u ever told him to succumb? or doesn't he know?...I can't do that! ");
 
         String lang = ld.predictUsingNaiveBayes(inst);
         System.out.println("the predicted Language is = " + lang);
-
         //System.out.println(ld.getVocabulary().size());
+   
+    
+    
     }
 
 }

@@ -18,15 +18,16 @@ import java.util.logging.Logger;
 public class Instance {
 
     private String testDoc;
-   
-    public Instance() {
-          
-    //for parameterless constructor
+    private FeatureExtractor fe = new FeatureExtractor();
 
+    public Instance() {
+
+    //for parameterless constructor
     }
 
     public Instance(File textFile) {
         //for a constructor with textFile
+
         String fileContentInString = null;
         FileInputStream fis;
         try {
@@ -41,7 +42,8 @@ public class Instance {
                 fis.read(contentArray);
 
                 fileContentInString = new String(contentArray);
-                this.testDoc = fileContentInString;
+                //preprocess the file content by removing all sorts of symbols and then do stemming
+                this.testDoc = fe.preProcess(fileContentInString);
 
             }
         } catch (IOException ex) {
@@ -50,7 +52,7 @@ public class Instance {
     }
 
     public Instance(String text) {
-        this.testDoc = text;
+        this.testDoc = fe.preProcess(text);
     }
 
     public String loadData() {

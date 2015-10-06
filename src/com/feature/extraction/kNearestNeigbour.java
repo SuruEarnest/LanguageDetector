@@ -12,13 +12,15 @@ package com.feature.extraction;
 public class kNearestNeigbour {
 
     public int k;
+    DataSet dataObj = new DataSet();
 
     public kNearestNeigbour(int k) {
         this.k = k;
     }
 
     public void trainKNN() {
-
+        dataObj.loadTrainingData();
+        dataObj.buildVocabulary(dataObj.getTrainingCorpusMap());
     }
 
     public String predict(Instance inst) {
@@ -27,11 +29,19 @@ public class kNearestNeigbour {
         return "";
     }
 
-    
-    public static void main(String args[])
-    {
-    
+    public static void main(String args[]) {
+
         System.out.println("trying out stuffs related to knn...");
+
+    }
+
+    private class Similarity {
         
+        private Similarity(DocumentVector x,DocumentVector y)
+        {
+        
+        
+        }
+
     }
 }

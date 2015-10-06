@@ -34,4 +34,14 @@ public class kNearestNeigbour {
         System.out.println("trying out stuffs related to knn...");
 
     }
+
+    private class Similarity {
+        
+        private Similarity(DocumentVector x,DocumentVector y)
+        {
+        
+        
+        }
+
+    }
 }

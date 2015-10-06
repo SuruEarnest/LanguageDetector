@@ -61,15 +61,13 @@ public class FeatureExtractor {
 //        return termFrequency(term1, doc1) * inverseDocumentFrequency(term1, docListMap);
 //    }
     public static int tf(String term, String documentText) {
-        //term would be extracted from vocabulary words which are already stemmed
 
         String tokens[] = documentText.split(" ");
         int count = 0;
 
         for (int i = 0; i < tokens.length; i++) {
 
-            // System.out.println("document text = "+FeatureExtractor.callStemmer(tokens[i]));
-            if (term.equalsIgnoreCase(FeatureExtractor.callStemmer(tokens[i]))) {
+            if (term.equalsIgnoreCase(tokens[i])) {
 
                 count = count + 1;
                 // System.out.println("Yaaayyy..." + term + "is found here = " + count);
@@ -102,7 +100,7 @@ public class FeatureExtractor {
 
                 for (int tk = 0; tk < tokens.length; tk++) {
                     //   System.out.println("current token "+tokens[i]+" in "+docString);
-                    if (term.equalsIgnoreCase(FeatureExtractor.callStemmer(tokens[tk]))) {
+                    if (term.equalsIgnoreCase(tokens[tk])) {
 
                         //  System.out.println("token " + tokens[tk] + " = is same as the term  "+term);
                         numOfDocsWhereTermAppears++;
@@ -116,12 +114,13 @@ public class FeatureExtractor {
 
         }
 
-//        System.out.println(
-//                "Total number of docs = " + totalNumOfDocs);
-//        System.out.println(
-//                "doc frequency = " + numOfDocsWhereTermAppears);
+        System.out.println(
+                "Total number of docs = " + totalNumOfDocs);
+        System.out.println(
+                "doc frequency = " + numOfDocsWhereTermAppears);
+
         double value = (totalNumOfDocs / (1 + numOfDocsWhereTermAppears));
-        //System.out.println("fraction value = " + value);
+        System.out.println("fraction value = " + value);
         return Math.log10(value);
     }
 
@@ -129,7 +128,7 @@ public class FeatureExtractor {
         return tf(term, doc) * idf(term, allDocsList);
     }
 
-    public static String callStemmer(String word) {
+    public String callStemmer(String word) {
         Stemmer stemmer = new Stemmer();
 
         char wordCharArray[] = word.toCharArray();

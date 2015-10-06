@@ -14,7 +14,7 @@ import java.util.ListIterator;
 import java.util.Set;
 
 /**
- *
+ *s
  * @author suruearnest
  */
 public class DataSet {
@@ -54,14 +54,14 @@ public class DataSet {
                 + "predicatore,guaritore ed esorcista negli ultimi anni della sua vita nella provincia romana della Giudea nella regione storica della Palestina.";
         ArrayList<String> italianDocs = new ArrayList<>();
 
-        englishDocs.add(fe.preProcess(docEng1));
-        englishDocs.add(fe.preProcess(docEng2));
+       // englishDocs.add(fe.preProcess(docEng1));
+        englishDocs.add(fe.preProcess(new String("Shipment of gold damaged in a fire")));
 
-        frenchDocs.add(fe.preProcess(docFrench));
-        frenchDocs.add(fe.preProcess(docFrench2));
+        //frenchDocs.add(fe.preProcess(docFrench));
+        frenchDocs.add(fe.preProcess(new String("Delivery of silver arrived in a silver truck")));
 
-        italianDocs.add(fe.preProcess(docItalia));
-        italianDocs.add(fe.preProcess(docItalia2));
+       // italianDocs.add(fe.preProcess(docItalia));
+        italianDocs.add(fe.preProcess(new String("Shipment of gold arrived in a truck")));
 
         trainingCorpus.put("English", englishDocs);
         trainingCorpus.put("French", frenchDocs);
@@ -156,15 +156,15 @@ public class DataSet {
 
     }
 
-//    public void updateVocabulary(String textDocument) {
-//        FeatureExtractor fe = new FeatureExtractor();
-//        String tokens[] = fe.preProcess(textDocument).split(" ");//splitting upon whitespace
-//        for (String token : tokens) {
-//            String vocToken = fe.callStemmer(token);
-//
-//            vocabulary.add(vocToken);//adding to the vocabulary set...
-//        }
-//    }
+    public void updateVocabulary(String textDocument) {
+        FeatureExtractor fe = new FeatureExtractor();
+        String tokens[] = fe.preProcess(textDocument).split(" ");//splitting upon whitespace
+        for (String token : tokens) {
+            String vocToken = fe.callStemmer(token);
+
+            vocabulary.add(vocToken);//adding to the vocabulary set...
+        }
+    }
     public List<List<String>> getAllDocsList() {
         return this.allDocsList;
     }

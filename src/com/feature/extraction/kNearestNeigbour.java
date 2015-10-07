@@ -9,13 +9,16 @@ package com.feature.extraction;
  *
  * @author suruearnest
  */
+
 public class kNearestNeigbour {
 
     public int k;
     DataSet dataObj = new DataSet();
 
     public kNearestNeigbour(int k) {
+    
         this.k = k;
+        
     }
 
     public void trainKNN() {
@@ -35,13 +38,5 @@ public class kNearestNeigbour {
 
     }
 
-    private class Similarity {
-        
-        private Similarity(DocumentVector x,DocumentVector y)
-        {
-        
-        
-        }
-
-    }
+   
 }

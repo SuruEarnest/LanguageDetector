@@ -63,11 +63,11 @@ public class Document {
             //for (int tk = 0; tk < tokens.length; tk++) {
             //  String wordTokenInTextDoc = tokens[tk];//this is the token of each word in the text document
             //now calculate the tf-idf of each word in this textDocument using the textDoc,allDocList and current term/token
-            double tfIdf = FeatureExtractor.tfIdf(textDoc, dt.getAllDocsList(), vocabWord);
-            // Double tf = new Double(FeatureExtractor.tf(vocabWord, textDoc));
-            String formatted = formatter.format(tfIdf);
+            //double tfIdf = FeatureExtractor.tfIdf(textDoc, dt.getAllDocsList(), vocabWord);
+            Double tf = new Double(FeatureExtractor.tf(vocabWord, textDoc));
+           // String formatted = formatter.format(tfIdf);
 
-            vector.add(tfIdf);
+            vector.add(tf);
             // System.out.println("counter value = " + tk);
             //}
 
@@ -124,25 +124,25 @@ public class Document {
         List<Double> vector1 = doc1.getDocumentVector();
         System.out.println(vector1);
 
-//        Document doc2 = new Document("Delivery of silver arrived in a silver truck");
-//        List<Double> vector2 = doc2.getDocumentVector();//must use the object of the new document to call its vector representation
-//        System.out.println(vector2);
-//
-//        Document doc3 = new Document("Shipment of gold arrived in a truck");
-//        List<Double> vector3 = doc3.getDocumentVector();
-//        System.out.println(vector3);
-//
-//        Document queryDoc = new Document("gold silver truck ");
-//        List<Double> queryVector = queryDoc.getDocumentVector();
-//        System.out.println(queryVector);
-//
-//        double simi_vectro1 = queryDoc.vectorSimilarity(queryVector, vector1);
-//        double simi_vectro2 = queryDoc.vectorSimilarity(queryVector, vector2);
-//        double simi_vectro3 = queryDoc.vectorSimilarity(queryVector, vector3);
-//
-//        System.out.println("sim btw query vector and vector 1 = " + simi_vectro1);
-//        System.out.println("sim btw query vector and vector 2 = " + simi_vectro2);
-//        System.out.println("sim btw query vector and vector 3 = " + simi_vectro3);
+        Document doc2 = new Document("Delivery of silver arrived in a silver truck");
+        List<Double> vector2 = doc2.getDocumentVector();//must use the object of the new document to call its vector representation
+        System.out.println(vector2);
+
+        Document doc3 = new Document("Shipment of gold arrived in a truck");
+        List<Double> vector3 = doc3.getDocumentVector();
+        System.out.println(vector3);
+
+        Document queryDoc = new Document("gold silver truck ");
+        List<Double> queryVector = queryDoc.getDocumentVector();
+        System.out.println(queryVector);
+
+        double simi_vectro1 = queryDoc.vectorSimilarity(queryVector, vector1);
+        double simi_vectro2 = queryDoc.vectorSimilarity(queryVector, vector2);
+        double simi_vectro3 = queryDoc.vectorSimilarity(queryVector, vector3);
+
+        System.out.println("sim btw query vector and vector 1 = " + simi_vectro1);
+        System.out.println("sim btw query vector and vector 2 = " + simi_vectro2);
+        System.out.println("sim btw query vector and vector 3 = " + simi_vectro3);
     }
 
 }

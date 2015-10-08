@@ -6,20 +6,23 @@
 package com.feature.extraction;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import net.sf.javaml.classification.KNearestNeighbors;
 
 /**
  *
  * @author suruearnest
  */
-public class kNearestNeigbour {
+public class kNearestNeigbour extends DataSet {
 
     private int k;
-    private DataSet dataObj = new DataSet();
+    //private DataSet dataObj = new DataSet();
     private List<List<Double>> trainingDocVectorList = new ArrayList<>();
     private HashMap<String, List<Double>> docToDocVectorMap = new HashMap<>();
 
@@ -44,7 +47,7 @@ public class kNearestNeigbour {
             List<String> docsList = allDocsList.get(i);//getting the lists in the large list NB:each list contains strings of values representing the docs
             System.out.println("current training doc = " + docsList);
             for (int j = 0; j < docsList.size(); j++) {//loop thru the current list in the large list
-                String docText = docsList.get(i);//gets the current doc in the current list
+                String docText = docsList.get(j);//gets the current doc in the current list
                 //now calculate the document vector of this particular doc...
                 Document doc = new Document(docText);
                 trainingDocVectorList.add(doc.getDocumentVector());
@@ -60,34 +63,75 @@ public class kNearestNeigbour {
     }
 
     public void trainKNN() {
-
-        dataObj.loadTrainingData();
-        dataObj.buildVocabulary(dataObj.getTrainingCorpusMap());
-        generateTrainingDocVectorList(dataObj.getAllDocsList());//generating the document vector for each training sample
+        //must be called before ever attempting to predict
+        loadTrainingData();
+        buildVocabulary(this.getTrainingCorpusMap());
+        generateTrainingDocVectorList(this.getAllDocsList());//generating the document vector for each training sample
 
     }
 
-    
-    private String transformDocumentVectorToDocumentText(List<Double>documentVector)
-    {
+    private static String transformDocumentVectorToDocumentText(HashMap<String, List<Double>> docToDocVectorMap, List<Double> documentVector) {
         //get dccumentText given the documentVector using the docToDocVectorMap
-        HashMap<String,List<Double>> docToDocVectorMap1 = getDocToDocVectorMap();
-        Collection<List<Double>> valueSet = docToDocVectorMap1.values();
-        for(int i=0;i<valueSet.size();i++)
-        {
-          //List<Double> docVectorList = docToDocVectorMap1.
-        
+
+        String docText = " ";
+
+        for (Map.Entry entry : docToDocVectorMap.entrySet()) {
+            if (documentVector.equals(entry.getValue())) {
+                docText = entry.getKey().toString();
+                break; //break out because it is assumed to be a one to one map,no other value is assigned to such ket
+            }
         }
-        
-        return "";
+
+        return docText;
     }
-    public int attributeFunctionY(List<Double>documentVector,String languageCategory) {
-       
-        
-        
-                
-        
-        return 0;
+
+    //must have been preprocessed too
+    private String getCategoryInTrainingCorpusFromDocText(String documentText) {
+
+        String languageCategory = "";
+        HashMap<String, ArrayList<String>> trainingCorpus = getTrainingCorpusMap();
+        //Note that the training corpus is a Map of Language category to ArrayLists of documents.
+        Collection<ArrayList<String>> valuesCollection = trainingCorpus.values();
+        Iterator it = valuesCollection.iterator();
+
+        while (it.hasNext()) {
+            //looping through the arrayList of documents
+            Object x = it.next();
+            ArrayList<String> docTextList = (ArrayList<String>) x;//current arrayList
+            //System.out.println("Expected = " + docText);
+            for (int i = 0; i < docTextList.size(); i++) {
+                String docText = docTextList.get(i);
+                if (docText.equalsIgnoreCase(documentText)) {
+                    //then use the current ArrayList to get the languageCatgory in the training corpus
+                    for (Map.Entry entry : trainingCorpus.entrySet()) {
+                        if (docTextList.equals(entry.getValue())) {
+                            languageCategory = entry.getKey().toString();
+                            break; //break out because it is assumed to be a one to one map,no other value is assigned to such ket
+                        }
+                    }
+
+                    break;
+                }
+            }
+
+        }
+
+        return languageCategory;
+    }
+
+    private int attributeFunctionY(List<Double> documentVector, String languageCategory) {
+        //this attribute function is used in the calculation of the probability that a textDoc belongs to a particular language category  
+        String docText = transformDocumentVectorToDocumentText(getDocToDocVectorMap(), documentVector);//gets the string format of the document vector
+        String languageCategoryInrainingDocs = getCategoryInTrainingCorpusFromDocText(docText);
+
+        if (languageCategoryInrainingDocs.equalsIgnoreCase(languageCategory)) {
+
+            return 1;
+        } else {
+            return 0;
+
+        }
+
     }
 
     public String predict(Instance inst) {
@@ -103,10 +147,11 @@ public class kNearestNeigbour {
         List<Double> testDocVector = testDoc.getDocumentVector();
 
         List<List<Double>> trainDocVectorList = getTrainingDocVectorList();
+        // above line gets all the training docs and calculates their respective document vector and stores them in a list
 
         double similarityArray[] = new double[trainDocVectorList.size()];
 
-        //Now generating a HashMap that contains docVectors and their similarities with the testDocVector
+        //Now generating a HashMap that contains each docVectors and their similarities with the testDocVector
         for (int i = 0; i < trainDocVectorList.size(); i++) {
 
             Document doc = new Document();//no need to pass any parameter since we are not creating a document vector
@@ -116,19 +161,24 @@ public class kNearestNeigbour {
             double similarity = doc.vectorSimilarity(testDocVector, currentDocVector);
 
             similarityArray[i] = similarity;//storing similarity in an array...
+            
             similarityMap.put(currentDocVector, similarity);//storing docVectors and their similarity values with the testDocVector
+            
             
         }
 
+        //System.out.println("Similarity map = " + similarityMap);
         //select the largest k samples from the  n similarities computed above....
-        
         return "";
-    }
+    }  
 
     public static void main(String args[]) {
 
-        System.out.println("trying out stuffs related to knn...");
-
+        kNearestNeigbour knn = new kNearestNeigbour(7);
+        knn.trainKNN();
+        Instance inst = new Instance("silver gold truck");
+        knn.predict(inst);
+        //knn.getCategoryInTrainingCorpusFromDocText("Delivery of gold arrived in a gold truck");
     }
 
 }

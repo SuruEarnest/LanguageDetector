@@ -18,7 +18,7 @@ import java.util.Set;
  * @author Suru Earnest under the supervision of Victor Odumuyiwa(Ph.D),Computer
  * Science,University of Lagos,Akoka.
  */
-public class NaiveBayes {
+public class NaiveBayes extends DataSet{
 
     DataSet datasetObject = new DataSet();
 
@@ -38,13 +38,13 @@ public class NaiveBayes {
         while (languageClassesListIt.hasNext()) {
             String languageClass = languageClassesListIt.next();
 
-            double priorProb = datasetObject.getNumberOfDocsInClass(languageClass) / datasetObject.getNumberOfTrainingDocs();
+            double priorProb = getNumberOfDocsInClass(languageClass) / getNumberOfTrainingDocs();
 
             //using laplace smoothing technique
-            double count1 = countInClass(testData, datasetObject.allDocsInClass(languageClass)) + 1;
+            double count1 = countInClass(testData,allDocsInClass(languageClass)) + 1;
             //System.out.println("count1 = " + count1);
 
-            double count2 = countInClass(datasetObject.vocabularyToString(), datasetObject.allDocsInClass(languageClass)) + datasetObject.getVocabulary().size();
+            double count2 = countInClass(vocabularyToString(),allDocsInClass(languageClass)) + getVocabulary().size();
             //System.out.println("count2 = " + count2);
 
             double aposterioriProb = count1 / count2;
@@ -98,8 +98,8 @@ public class NaiveBayes {
      */
     public void trainUsingNaiveBayes() {
 
-        datasetObject.loadTrainingData();
-        datasetObject.buildVocabulary(datasetObject.getTrainingCorpusMap());
+        loadTrainingData();
+        buildVocabulary(getTrainingCorpusMap());
 
     }
 
@@ -123,7 +123,7 @@ public class NaiveBayes {
 
         String textValue = inst.loadData();
         System.out.println("preprocessed text value = " + textValue);
-        HashMap<String, Double> x = naiveBayesProbabilities(datasetObject.getLanguageClasses(), textValue);
+        HashMap<String, Double> x = naiveBayesProbabilities(getLanguageClasses(), textValue);
         double highestProbability = highestValue(x.values());
         String language = getPredictedLanguage(x, highestProbability);
 
@@ -138,6 +138,7 @@ public class NaiveBayes {
         for (Map.Entry entry : probMap.entrySet()) {
             if (d.equals(entry.getValue())) {
                 languageKey = entry.getKey().toString();
+                
                 break; //break out because it is assumed to be a one to one map,no other value is assigned to such ket
             }
         }
@@ -152,7 +153,7 @@ public class NaiveBayes {
         ld.trainUsingNaiveBayes();
 
         // Instance inst = new Instance("Don't tell me it works like that");
-        Instance inst = new Instance("I told him i'd not be involved in the task yesterday because I'm going home.I am a very honest person,did u ever told him to succumb? or doesn't he know?...I can't do that! ");
+        Instance inst = new Instance("gold silver truck");
 
         String lang = ld.predictUsingNaiveBayes(inst);
         System.out.println("the predicted Language is = " + lang);

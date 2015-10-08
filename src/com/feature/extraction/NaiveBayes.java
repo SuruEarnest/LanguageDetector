@@ -18,7 +18,7 @@ import java.util.Set;
  * @author Suru Earnest under the supervision of Victor Odumuyiwa(Ph.D),Computer
  * Science,University of Lagos,Akoka.
  */
-public class NaiveBayes extends DataSet{
+public class NaiveBayes extends DataSet {
 
     DataSet datasetObject = new DataSet();
 
@@ -41,10 +41,10 @@ public class NaiveBayes extends DataSet{
             double priorProb = getNumberOfDocsInClass(languageClass) / getNumberOfTrainingDocs();
 
             //using laplace smoothing technique
-            double count1 = countInClass(testData,allDocsInClass(languageClass)) + 1;
+            double count1 = countInClass(testData, allDocsInClass(languageClass)) + 1;
             //System.out.println("count1 = " + count1);
 
-            double count2 = countInClass(vocabularyToString(),allDocsInClass(languageClass)) + getVocabulary().size();
+            double count2 = countInClass(vocabularyToString(), allDocsInClass(languageClass)) + getVocabulary().size();
             //System.out.println("count2 = " + count2);
 
             double aposterioriProb = count1 / count2;
@@ -103,22 +103,6 @@ public class NaiveBayes extends DataSet{
 
     }
 
-    private double highestValue(Collection<Double> val) {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        double valu = 0.0, max = 0.0;
-        Iterator it = val.iterator();
-
-        while (it.hasNext()) {
-
-            valu = Double.parseDouble(it.next().toString());
-            if (max <= valu) {
-                max = valu;
-            }
-        }
-
-        return max;
-    }
-
     public String predictUsingNaiveBayes(Instance inst) {
 
         String textValue = inst.loadData();
@@ -130,37 +114,20 @@ public class NaiveBayes extends DataSet{
         return language;
     }
 
-    private String getPredictedLanguage(HashMap<String, Double> probMap, double value) {
-
-        Double d = new Double("" + value + "");
-        String languageKey = null;
-
-        for (Map.Entry entry : probMap.entrySet()) {
-            if (d.equals(entry.getValue())) {
-                languageKey = entry.getKey().toString();
-                
-                break; //break out because it is assumed to be a one to one map,no other value is assigned to such ket
-            }
-        }
-
-        return languageKey;
-    }
+    
 
     public static void main(String args[]) {
 
-    
         NaiveBayes ld = new NaiveBayes();
         ld.trainUsingNaiveBayes();
 
         // Instance inst = new Instance("Don't tell me it works like that");
-        Instance inst = new Instance("gold silver truck");
+        Instance inst = new Instance("Please,come along with the other two men");
 
         String lang = ld.predictUsingNaiveBayes(inst);
         System.out.println("the predicted Language is = " + lang);
         //System.out.println(ld.getVocabulary().size());
-   
-    
-    
+
     }
 
 }

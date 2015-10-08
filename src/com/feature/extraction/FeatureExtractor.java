@@ -118,8 +118,7 @@ public class FeatureExtractor {
 //                "Total number of docs = " + totalNumOfDocs);
 //        System.out.println(
 //                "doc frequency = " + numOfDocsWhereTermAppears);
-
-        double value = (totalNumOfDocs / (numOfDocsWhereTermAppears));
+        double value = (totalNumOfDocs / (1+numOfDocsWhereTermAppears));
         //System.out.println("fraction value = " + value);
         return Math.log10(value);
     }

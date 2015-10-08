@@ -5,6 +5,7 @@
  */
 package com.feature.extraction;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -17,11 +18,16 @@ import java.util.Set;
  */
 public class Document {
 
+    private DecimalFormat formatter = new DecimalFormat("#.####");
     private DataSet dt;
     Set<String> vocabSet;
     FeatureExtractor fe = new FeatureExtractor();
     private String documentText;
 
+    public Document()
+    {
+     
+    }
     public Document(String textDoc) {
         dt = new DataSet();//this helps to instantiate the DataSet class
         dt.loadTrainingData();
@@ -59,6 +65,8 @@ public class Document {
             //now calculate the tf-idf of each word in this textDocument using the textDoc,allDocList and current term/token
             double tfIdf = FeatureExtractor.tfIdf(textDoc, dt.getAllDocsList(), vocabWord);
             // Double tf = new Double(FeatureExtractor.tf(vocabWord, textDoc));
+            String formatted = formatter.format(tfIdf);
+
             vector.add(tfIdf);
             // System.out.println("counter value = " + tk);
             //}
@@ -70,7 +78,7 @@ public class Document {
 
     }
 
-    public static double vectorMagnitude(List<Double> documentVector) {
+    public double vectorMagnitude(List<Double> documentVector) {
 
         double sumOfSquares = 0.0;
         double magnitude = 0.0;
@@ -79,10 +87,11 @@ public class Document {
             sumOfSquares = sumOfSquares + Math.pow(documentVector.get(i), 2);
         }
         magnitude = Math.sqrt(sumOfSquares);
-        return magnitude;
+        String formatted = formatter.format(magnitude);
+        return magnitude;//Double.parseDouble(formatted);
     }
 
-    public static double vectorDotProduct(List<Double> vector1, List<Double> vector2) {
+    public double vectorDotProduct(List<Double> vector1, List<Double> vector2) {
 
         double dotProduct = 0;
         double sumOfProduct = 0;
@@ -93,26 +102,28 @@ public class Document {
         for (int i = 0; i < vector1.size(); i++) {
 
             dotProduct = vector1.get(i) * vector2.get(i);
-                //System.out.println("the current value in vector1 = " + vector1.get(i));
+            //System.out.println("the current value in vector1 = " + vector1.get(i));
             // System.out.println("the current value in vector2 = " + vector2.get(j));
             sumOfProduct = sumOfProduct + dotProduct;
 
         }
-        return sumOfProduct;
+        String formatted = formatter.format(sumOfProduct);
+        return sumOfProduct;//Double.parseDouble(formatted);
     }
 
     public double vectorSimilarity(List<Double> vector1, List<Double> vector2) {
         double similarity;
         similarity = vectorDotProduct(vector1, vector2) / vectorMagnitude(vector1) * vectorMagnitude(vector2);
-        return similarity;
+        //String formatted = formatter.format(similarity);
+        return similarity ;//Double.parseDouble(formatted);
     }
 
     public static void main(String args[]) {
 
-//        Document doc1 = new Document("Shipment of gold damaged in fire");
-//        List<Double> vector1 = doc1.getDocumentVector();
-//        System.out.println(vector1);
-//
+        Document doc1 = new Document("a Shipment");
+        List<Double> vector1 = doc1.getDocumentVector();
+        System.out.println(vector1);
+
 //        Document doc2 = new Document("Delivery of silver arrived in a silver truck");
 //        List<Double> vector2 = doc2.getDocumentVector();//must use the object of the new document to call its vector representation
 //        System.out.println(vector2);

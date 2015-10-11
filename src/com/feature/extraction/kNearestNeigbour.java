@@ -245,9 +245,9 @@ public class kNearestNeigbour extends DataSet {
 
     public static void main(String args[]) {
 
-        kNearestNeigbour knn = new kNearestNeigbour(5);
+        kNearestNeigbour knn = new kNearestNeigbour(8);
         knn.trainKNN();
-        Instance inst = new Instance("Please,come along with the other two men");
+        Instance inst = new Instance("Jesus christ is coming soon.he is the savior of the world");
         String lang = knn.predict(inst);
         System.out.println(lang);
         //knn.getCategoryInTrainingCorpusFromDocText("Delivery of gold arrived in a gold truck");

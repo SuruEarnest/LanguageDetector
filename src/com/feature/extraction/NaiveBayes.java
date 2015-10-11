@@ -114,15 +114,14 @@ public class NaiveBayes extends DataSet {
         return language;
     }
 
-    
-
     public static void main(String args[]) {
 
         NaiveBayes ld = new NaiveBayes();
         ld.trainUsingNaiveBayes();
 
         // Instance inst = new Instance("Don't tell me it works like that");
-        Instance inst = new Instance("Please,come along with the other two men");
+        Instance inst = new Instance("\"Jésus-Christ, le Christ ou simplement Christ est le nom donné par l'ensemble des chrétiens à Jésus de Nazareth qu'ils considèrent comme le Messie,\"\n" +
+"                + \"l’oint du Seigneur » annoncé par l'Ancien Testament du judaïsme");
 
         String lang = ld.predictUsingNaiveBayes(inst);
         System.out.println("the predicted Language is = " + lang);

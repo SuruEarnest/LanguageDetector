@@ -35,7 +35,7 @@ public class Document {
         this.documentText = textDoc;
         dt.updateVocabulary(textDoc);
         vocabSet = dt.getVocabulary();
-       // System.out.println(vocabSet);
+        // System.out.println(vocabSet);
     }
 
     public String getDocumentText() {
@@ -54,12 +54,11 @@ public class Document {
         Iterator it = vocabSet.iterator();
 
        // System.out.println("Text doc = " + textDoc);
-       // System.out.println("VocabSize = " + vocabSet.size());
-
+        // System.out.println("VocabSize = " + vocabSet.size());
         while (it.hasNext()) {
 
             String vocabWord = it.next().toString();
-           // System.out.println("vocab word = " + vocabWord);
+            // System.out.println("vocab word = " + vocabWord);
             //for (int tk = 0; tk < tokens.length; tk++) {
             //  String wordTokenInTextDoc = tokens[tk];//this is the token of each word in the text document
             //now calculate the tf-idf of each word in this textDocument using the textDoc,allDocList and current term/token
@@ -73,7 +72,7 @@ public class Document {
 
         }
 
-       // System.out.println("doc vector size = " + vector.size());
+        // System.out.println("doc vector size = " + vector.size());
         return vector;
 
     }
@@ -97,8 +96,7 @@ public class Document {
         double sumOfProduct = 0;
 
        // System.out.println("vector 1 = " + vector1);
-       // System.out.println("vector 2 = " + vector2);
-
+        // System.out.println("vector 2 = " + vector2);
         for (int i = 0; i < vector2.size(); i++) {
 
             dotProduct = vector1.get(i) * vector2.get(i);

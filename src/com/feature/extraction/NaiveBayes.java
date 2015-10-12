@@ -114,15 +114,18 @@ public class NaiveBayes extends DataSet {
         return language;
     }
 
-    
-
     public static void main(String args[]) {
 
         NaiveBayes ld = new NaiveBayes();
         ld.trainUsingNaiveBayes();
 
         // Instance inst = new Instance("Don't tell me it works like that");
-        Instance inst = new Instance("Please,come along with the other two men");
+        Instance inst = new Instance("As?s? Igbo bu as?s? Niger-Congo nke madu rúrú ndè iri ab?ô na ise nke ndi júrú ya b? ndi Igbo. Na nleda-owuwa Naigeria \n"
+                + "na ébé Niger Delta, Igbo b? díàlà. Ha dèrè yá nà édé Latin, nke ndí mpaghara Britain nwètèrè. Nkárí ndi ozor bu nké Èkpè búrú nkárí Ns?b?d?. \n"
+                + "As?s? Igbo bu ólú nke a na akpo n'ezigbo hanwa. Ó di ike taa ndi óbiá i-suta ya, dikwa ike taa ndi Igbo ozo bi na ámá nk? ozor Í mátá ihe ndi \n"
+                + "nke ozo na ekwu, maka na ndi Igbo hiri nne.\n"
+                + "\n"
+                + "Nkée bu mkp?r?edemede asusu wu");
 
         String lang = ld.predictUsingNaiveBayes(inst);
         System.out.println("the predicted Language is = " + lang);

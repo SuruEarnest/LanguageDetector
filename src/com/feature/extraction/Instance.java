@@ -21,8 +21,7 @@ public class Instance {
     private FeatureExtractor fe = new FeatureExtractor();
 
     public Instance() {
-
-    //for parameterless constructor
+     //for parameterless constructor
     }
 
     public Instance(File textFile) {

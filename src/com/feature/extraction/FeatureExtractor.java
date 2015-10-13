@@ -24,42 +24,6 @@ public class FeatureExtractor {
         String newString = fileContentInString.toLowerCase().replaceAll("[\"-(),@!{}><'?.\'/`~#$%^&*]", " ");
         return newString;
     }
-
-//    public static double inverseDocumentFrequency(String term, HashMap<String, ArrayList<String>> docListMap) {
-//
-//        int count = 0;
-//        int numOfDocs = 0;
-//        double tf = 0;
-//        double idf = 0;
-//        Set langClasses = docListMap.keySet();
-//        Iterator langSetIterator = langClasses.iterator();
-//
-//        while (langSetIterator.hasNext()) {
-//
-//            String keyObj = langSetIterator.next().toString();
-//            ArrayList<String> docList = docListMap.get(keyObj);//gets the arrayList of documents using the specific keys
-//            numOfDocs = numOfDocs + docList.size();
-//            ListIterator docListIterator = docList.listIterator();
-//
-//            while (docListIterator.hasNext()) {
-//                String docString = docListIterator.next().toString();
-//
-//                //tf = termFrequency(term, docString);
-//                //System.out.println("docStringValue = "+docString);
-//                if (docString.contains(term)) {
-//                    // System.out.println("" + term + " found in " + docString);
-//                    count = count + 1;//counting the number of docs in which the term appears
-//
-//                }
-//
-//            }
-// }
-    // return Math.log10(numOfDocs / count);
-    // }
-//    public static double tfIDF(String term1, String doc1, HashMap<String, ArrayList<String>> docListMap) {
-//
-//        return termFrequency(term1, doc1) * inverseDocumentFrequency(term1, docListMap);
-//    }
     public static int tf(String term, String documentText) {
 
         String tokens[] = documentText.split(" ");
@@ -89,8 +53,6 @@ public class FeatureExtractor {
             // System.out.println("print current list = " + currentDocList);
             totalNumOfDocs = totalNumOfDocs + currentDocList.size();
             //now iterate thru this current list and compare with the term...if term is foumd increment docFrequency
-            // ListIterator currentDocListIterator = currentDocList.listIterator();
-
             for (int j = 0; j < currentDocList.size(); j++) {
 
                 String docString = currentDocList.get(j);
@@ -113,11 +75,6 @@ public class FeatureExtractor {
             }
 
         }
-
-//        System.out.println(
-//                "Total number of docs = " + totalNumOfDocs);
-//        System.out.println(
-//                "doc frequency = " + numOfDocsWhereTermAppears);
         double value = (totalNumOfDocs / (1+numOfDocsWhereTermAppears));
         //System.out.println("fraction value = " + value);
         return Math.log10(value);

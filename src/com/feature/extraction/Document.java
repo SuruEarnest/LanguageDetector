@@ -96,9 +96,6 @@ public class Document {
         double dotProduct = 0;
         double sumOfProduct = 0;
 
-       // System.out.println("vector 1 = " + vector1);
-       // System.out.println("vector 2 = " + vector2);
-
         for (int i = 0; i < vector2.size(); i++) {
 
             dotProduct = vector1.get(i) * vector2.get(i);

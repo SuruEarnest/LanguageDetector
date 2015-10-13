@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.feature.extraction;
+package com.language.identifier;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,12 +14,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import net.sf.javaml.classification.Classifier;
-import net.sf.javaml.classification.KNearestNeighbors;
-import net.sf.javaml.core.Dataset;
-import net.sf.javaml.core.Instance;
-import net.sf.javaml.core.SparseInstance;
-import net.sf.javaml.tools.data.FileHandler;
 
 /**
  *
@@ -27,7 +21,7 @@ import net.sf.javaml.tools.data.FileHandler;
  */
 public class LanguageRecognizerUI extends javax.swing.JFrame {
 
-    Dataset data;
+   
 
     Instance inst;
     String testDataInput;
@@ -333,7 +327,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
             long endTrainTime = System.currentTimeMillis();
            
             long trainingTime = (endTrainTime - startTrainTime);
-            com.feature.extraction.Instance inst = new com.feature.extraction.Instance(testDataField.getText());
+            com.language.identifier.Instance inst = new com.language.identifier.Instance(testDataField.getText());
 
             long startPredictionTime = System.currentTimeMillis();
             String lang = knn.predict(inst);
@@ -357,7 +351,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
             long trainingTime = (endTrainTime - startTrainTime);
 
             // Instance inst = new Instance("Don't tell me it works like that");
-            com.feature.extraction.Instance inst = new com.feature.extraction.Instance(testDataField.getText());
+            com.language.identifier.Instance inst = new com.language.identifier.Instance(testDataField.getText());
             long startPredictionTime = System.currentTimeMillis();
             String lang = ld.predictUsingNaiveBayes(inst);
             long endPredictionTime = System.currentTimeMillis();

@@ -1,4 +1,4 @@
-package com.feature.extraction;
+package com.language.identifier;
 
 import java.io.File;
 import java.io.FileInputStream;

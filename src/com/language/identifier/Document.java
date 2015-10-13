@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.feature.extraction;
+package com.language.identifier;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.feature.extraction;
+package com.language.identifier;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import net.sf.javaml.classification.KNearestNeighbors;
 
 /**
  *

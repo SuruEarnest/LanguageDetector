@@ -34,7 +34,6 @@ public class DataSet {
     public void loadTrainingData() {
 
       //  FeatureExtractor fe = new FeatureExtractor();
-
         String docEng1 = "On 30 September 2015, Russia started a military intervention in the Syrian Civil War.[59] It consisted of air strikes"
                 + " by Russia against"
                 + " militant groups opposed to Syrian government, "
@@ -188,14 +187,14 @@ public class DataSet {
     }
 
     /**
-     * use {@link #getNumberOfClasses() }
+     * use {@link #getNumberOfLanguageCategories() }
      * to obtain the number of class of languages available from the training
      * corpus
      *
      *
      * @return integer value
      */
-    private int getNumberOfClasses() {
+    private int getNumberOfLanguageCategories() {
         return trainingCorpus.size();
     }
 

@@ -5,23 +5,27 @@
  */
 package com.language.identifier;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import sun.net.ProgressListener;
 
 /**
  *
  * @author suruearnest
  */
 public class LanguageRecognizerUI extends javax.swing.JFrame {
-
-   
 
     Instance inst;
     String testDataInput;
@@ -45,22 +49,22 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
     }
 
     private File getFile() {
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int result = fileChooser.showOpenDialog(this);
+        fileChooser.showOpenDialog(this);
 
-        if (result == JFileChooser.CANCEL_OPTION) {
-            System.exit(1);
-        }
+        // if (result == JFileChooser.CANCEL_OPTION) {
+        //System.exit(1);
+        //  }
         File fileObject = fileChooser.getSelectedFile();
 
         // display error if invalid
-        if ((fileObject == null) || (fileObject.getName().equals(""))) {
-            JOptionPane.showMessageDialog(this, "Invalid Name",
-                    "Invalid Name", JOptionPane.ERROR_MESSAGE);
-            System.exit(1);
-        } // end if
-
+        // if ((fileObject == null) || (fileObject.getName().equals(""))) {
+        //JOptionPane.showMessageDialog(this, "Invalid Name",
+        // "Invalid Name", JOptionPane.ERROR_MESSAGE);
+        //System.exit(1);
+        // } // end if
         return fileObject;
 
     }
@@ -93,7 +97,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         numberCombo = new javax.swing.JComboBox();
-        jProgressBar2 = new javax.swing.JProgressBar();
+        progressBar = new javax.swing.JProgressBar();
         jTabbedPane2 = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -230,7 +234,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(numberCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -240,7 +244,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(numberCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                    .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -266,8 +270,8 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -303,14 +307,13 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
 
         } else {
 
-            int numberOfLanguages = Integer.parseInt(numberCombo.getSelectedItem().toString());
-            int count = 0;
-
-            while (count < numberOfLanguages) {
-
-                count++;
-            }
-
+//            int numberOfLanguages = Integer.parseInt(numberCombo.getSelectedItem().toString());
+//            int count = 0;
+//
+//            while (count < numberOfLanguages) {
+//                  //pop up the window
+//                count++;
+//            }
         }
 
 
@@ -318,52 +321,96 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
 
     private void trainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainBtnActionPerformed
         // TODO add your handling code here:
+        statusArea.setText("");
+
         if (classifierCombo.getSelectedIndex() == 1) {
-           
+
             //knn
-            kNearestNeigbour knn = new kNearestNeigbour(3);
-            long startTrainTime = System.currentTimeMillis();
-            knn.trainKNN();
-            long endTrainTime = System.currentTimeMillis();
-           
-            long trainingTime = (endTrainTime - startTrainTime);
-            com.language.identifier.Instance inst = new com.language.identifier.Instance(testDataField.getText());
+            final kNearestNeigbour knn = new kNearestNeigbour(5);
 
-            long startPredictionTime = System.currentTimeMillis();
-            String lang = knn.predict(inst);
-            long endPredictionTime = System.currentTimeMillis();
-            long predictionTime = (endPredictionTime - startPredictionTime);
-            System.out.println(lang);
+            final long startTrainTime = System.currentTimeMillis();
 
-            statusArea.setText("");
-            statusArea.setText("The Predicted Language of the above Text = " + lang);
-            statusArea.setText(statusArea.getText() + "\nTotal Time spent in training = " + trainingTime);
-            statusArea.setText(statusArea.getText() + "\nTotal Time spent in prediction = " + predictionTime);
-            statusArea.setText(statusArea.getText() + "\nClassifier Name:" + classifierCombo.getSelectedItem());
+            progressBar.setIndeterminate(true);
+
+            new Thread(new Runnable() {
+
+                // a new thread
+                @Override
+                public void run() {
+
+                    knn.trainKNN();
+
+                    long endTrainTime = System.currentTimeMillis();
+                    final long trainingTime = (endTrainTime - startTrainTime);
+
+                    //new instance for prediction
+                    Instance inst = new Instance(testDataField.getText());
+
+                    long startPredictionTime = System.currentTimeMillis();
+                    final String lang = knn.predict(inst);
+
+                    long endPredictionTime = System.currentTimeMillis();
+                    final long predictionTime = (endPredictionTime - startPredictionTime);
+                    System.out.println(lang);
+
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+
+                            progressBar.setIndeterminate(false);
+                            statusArea.setText("");
+                            statusArea.setText("The Predicted Language of the above Text = " + lang);
+                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in training = " + trainingTime);
+                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in prediction = " + predictionTime);
+                            statusArea.setText(statusArea.getText() + "\nClassifier Name:" + classifierCombo.getSelectedItem());
+                        }
+                    });
+
+                }
+            }).start();
+
         } else if (classifierCombo.getSelectedIndex() == 2) {
 
-            // Instance inst = new Instance("Don't tell me it works like that");
-            NaiveBayes ld = new NaiveBayes();
+            //knn
+            final NaiveBayes nb = new NaiveBayes();
 
-            long startTrainTime = System.currentTimeMillis();
-            ld.trainUsingNaiveBayes();
-            long endTrainTime = System.currentTimeMillis();
-            long trainingTime = (endTrainTime - startTrainTime);
+            final long startTrainTime = System.currentTimeMillis();
 
-            // Instance inst = new Instance("Don't tell me it works like that");
-            com.language.identifier.Instance inst = new com.language.identifier.Instance(testDataField.getText());
-            long startPredictionTime = System.currentTimeMillis();
-            String lang = ld.predictUsingNaiveBayes(inst);
-            long endPredictionTime = System.currentTimeMillis();
-            long predictionTime = (endPredictionTime - startPredictionTime);
-            
-            System.out.println("the predicted Language is = " + lang);
+            progressBar.setIndeterminate(true);
+            new Thread(new Runnable() {
 
-            statusArea.setText("");
-            statusArea.setText("The Predicted Language of the above Text = " + lang);
-            statusArea.setText(statusArea.getText() + "\nTotal Time spent in training = " + trainingTime);
-            statusArea.setText(statusArea.getText() + "\nTotal Time spent in prediction = " + predictionTime);
-            statusArea.setText(statusArea.getText() + "\nClassifier Name:" + classifierCombo.getSelectedItem());
+                // a new thread
+                @Override
+                public void run() {
+
+                    nb.trainUsingNaiveBayes();
+
+                    long endTrainTime = System.currentTimeMillis();
+                    final long trainingTime = (endTrainTime - startTrainTime);
+
+                    //new instance for prediction
+                    Instance inst = new Instance(testDataField.getText());
+
+                    long startPredictionTime = System.currentTimeMillis();
+                    final String lang = nb.predictUsingNaiveBayes(inst);
+
+                    long endPredictionTime = System.currentTimeMillis();
+                    final long predictionTime = (endPredictionTime - startPredictionTime);
+                    System.out.println(lang);
+
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+
+                            progressBar.setIndeterminate(false);
+                            statusArea.setText("");
+                            statusArea.setText("The Predicted Language of the above Text = " + lang);
+                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in training = " + trainingTime);
+                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in prediction = " + predictionTime);
+                            statusArea.setText(statusArea.getText() + "\nClassifier Name:" + classifierCombo.getSelectedItem());
+                        }
+                    });
+
+                }
+            }).start();
         }
 
 
@@ -380,10 +427,26 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
     private void selectDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDataActionPerformed
         // TODO add your handling code here:
         if (selectData.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Message", "Please,select appropriate option for test data instance", JOptionPane.INFORMATION_MESSAGE);
-        } else if (selectData.getSelectedIndex() == 1) {//for manually entering data
+            JOptionPane.showMessageDialog(this, "Please,select appropriate option for test data instance", "Message", JOptionPane.INFORMATION_MESSAGE);
+        } else if (selectData.getSelectedIndex() == 1) {
+            //for manually entering data
 
             testDataField.setEditable(true);
+            testDataField.requestFocusInWindow();
+
+        } else {
+            //for loading data from the Jfile chooser
+            File trainingFile = this.getFile();
+
+            if (trainingFile != null) {
+                if (trainingFile.exists() && trainingFile.canRead() && trainingFile.getName().endsWith(".txt")) {
+                    String fileInStrinFormat = new FeatureExtractor().FileContentInStringFormat(trainingFile);
+                    testDataField.setText(fileInStrinFormat);
+                } else {
+                    JOptionPane.showMessageDialog(null, "You can only load text files for now", "File Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
         }
     }//GEN-LAST:event_selectDataActionPerformed
 
@@ -423,10 +486,49 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LanguageRecognizerUI().setVisible(true);
-                Double x = Double.NEGATIVE_INFINITY;
-                System.err.println("x = " + (x * -50));
             }
         });
+
+    }
+
+    private class progressListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Task tsk = new Task();
+            tsk.start();
+            if (!(progressBar.getValue() < progressBar.getMaximum())) {
+
+                tsk.stop();
+
+            }
+
+        }
+
+    }
+
+    private class Task extends Thread {
+
+        int count = 0;
+
+        public Task() {
+        }
+
+        public void run() {
+
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+
+                    progressBar.setValue(count);
+                    count = count + 5;
+                }
+            });
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+            }
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -440,13 +542,13 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JButton loadDataBtn;
     private javax.swing.JComboBox numberCombo;
+    private javax.swing.JProgressBar progressBar;
     private javax.swing.JComboBox selectData;
     private javax.swing.JTextArea statusArea;
     private javax.swing.JTextArea testDataField;

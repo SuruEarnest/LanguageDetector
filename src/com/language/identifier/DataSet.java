@@ -33,7 +33,7 @@ public class DataSet {
 
     public void loadTrainingData() {
 
-        FeatureExtractor fe = new FeatureExtractor();
+      //  FeatureExtractor fe = new FeatureExtractor();
 
         String docEng1 = "On 30 September 2015, Russia started a military intervention in the Syrian Civil War.[59] It consisted of air strikes"
                 + " by Russia against"

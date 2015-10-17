@@ -63,13 +63,12 @@ public class kNearestNeigbour extends DataSet {
 
     public void trainKNN() {
         //must be called before ever attempting to predict
-        
+
         loadTrainingData();
         buildVocabulary(this.getTrainingCorpusMap());
         generateTrainingDocVectorList(this.getAllDocsList());//generating the document vector for each training sample
         System.out.println("FINISHED TRAINING KNN!");
-       
-        
+
     }
 
     private static String transformDocumentVectorToDocumentText(HashMap<String, List<Double>> docToDocVectorMap, List<Double> documentVector) {
@@ -121,12 +120,12 @@ public class kNearestNeigbour extends DataSet {
         return languageCategory;
     }
 
-    private int attributeFunctionY(List<Double> documentVector, String languageCategory) {
+    private int categoryAttributeFunctionY(List<Double> documentVector, String languageCategory) {
         //this attribute function is used in the calculation of the probability that a textDoc belongs to a particular language category  
         String docText = transformDocumentVectorToDocumentText(getDocToDocVectorMap(), documentVector);//gets the string format of the document vector
-        String languageCategoryInrainingDocs = getCategoryInTrainingCorpusFromDocText(docText);
+        String languageCategoryInTrainingDocs = getCategoryInTrainingCorpusFromDocText(docText);
 
-        if (languageCategoryInrainingDocs.equalsIgnoreCase(languageCategory)) {
+        if (languageCategoryInTrainingDocs.equalsIgnoreCase(languageCategory)) {
 
             return 1;
         } else {
@@ -181,6 +180,7 @@ public class kNearestNeigbour extends DataSet {
         //System.out.println("print prob map = "+probabilityMap);
         double highestProbability = highestValue(probabilityMap.values());
         String language = getPredictedLanguage(probabilityMap, highestProbability);
+
         return language;
     }
 
@@ -194,7 +194,7 @@ public class kNearestNeigbour extends DataSet {
             //for each  similarity value largest_k_similarities list
             for (int j = 0; j < largest_k_similarities.size(); j++) {
 
-                probSum = probSum + largest_k_similarities.get(j) * attributeFunctionY(similarVectors.get(j), langCategory.get(i));
+                probSum = probSum + largest_k_similarities.get(j) * categoryAttributeFunctionY(similarVectors.get(j), langCategory.get(i));
 
             }
             probMap.put(langCategory.get(i), probSum);

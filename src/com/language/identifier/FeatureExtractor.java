@@ -136,38 +136,38 @@ public class FeatureExtractor {
         return wordFreqMap;
     }
 
-    public static void main(String args[]) {
-
-        // System.out.println("TF-IDF (ipsum) = " + tfidf);S
-        // System.out.println(documents);
-        List<String> d1 = new ArrayList<>();
-        d1.add("I will be going to oshodi tommorow");
-        d1.add("I won't go back no matter what");
-
-        List<String> d2 = new ArrayList<>();
-        d2.add("I would still love to come home sha");
-        d2.add("I sure know that I love Naomi");
-
-        List<String> d3 = new ArrayList<>();
-        d3.add("this boy is just too awesome to me");
-        d3.add("He loves Naomi terribly");
-
-        List<List<String>> allDocsList = new ArrayList<>();
-        allDocsList.add(d1);
-        allDocsList.add(d2);
-        allDocsList.add(d3);
-
-        String docText = "I wont go to his place today because I hate his character";
-        int tf = tf("to", docText);
-        System.out.println("Term frequency= " + tf);
-
-        double idf = idf("to", allDocsList);
-        System.out.println("idf = " + idf);
-
-        double tfidf = tfIdf(docText, allDocsList, "to");
-        System.out.println("tfidf = " + tfidf);
-
-        System.out.println("tfidf from the separate functions = " + tf * idf);
-    }
+//    public static void main(String args[]) {
+//
+//        // System.out.println("TF-IDF (ipsum) = " + tfidf);S
+//        // System.out.println(documents);
+//        List<String> d1 = new ArrayList<>();
+//        d1.add("I will be going to oshodi tommorow");
+//        d1.add("I won't go back no matter what");
+//
+//        List<String> d2 = new ArrayList<>();
+//        d2.add("I would still love to come home sha");
+//        d2.add("I sure know that I love Naomi");
+//
+//        List<String> d3 = new ArrayList<>();
+//        d3.add("this boy is just too awesome to me");
+//        d3.add("He loves Naomi terribly");
+//
+//        List<List<String>> allDocsList = new ArrayList<>();
+//        allDocsList.add(d1);
+//        allDocsList.add(d2);
+//        allDocsList.add(d3);
+//
+//        String docText = "I wont go to his place today because I hate his character";
+//        int tf = tf("to", docText);
+//        System.out.println("Term frequency= " + tf);
+//
+//        double idf = idf("to", allDocsList);
+//        System.out.println("idf = " + idf);
+//
+//        double tfidf = tfIdf(docText, allDocsList, "to");
+//        System.out.println("tfidf = " + tfidf);
+//
+//        System.out.println("tfidf from the separate functions = " + tf * idf);
+//    }
 
 }

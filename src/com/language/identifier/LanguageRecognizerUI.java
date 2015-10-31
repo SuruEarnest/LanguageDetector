@@ -440,12 +440,12 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
 
             if (trainingFile != null) {
                 if (trainingFile.exists() && trainingFile.canRead() && trainingFile.getName().endsWith(".txt")) {
-             
+
                     String fileInStrinFormat = new FeatureExtractor().FileContentInStringFormat(trainingFile);
                     testDataField.setText(fileInStrinFormat);
-                
-             } else {
-            
+
+                } else {
+
                     JOptionPane.showMessageDialog(null, "You can only load text files for now", "File Error", JOptionPane.ERROR_MESSAGE);
                 }
             }

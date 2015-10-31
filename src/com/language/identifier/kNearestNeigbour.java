@@ -244,14 +244,14 @@ public class kNearestNeigbour extends DataSet {
         return largest_k_similarities;
     }
 
-    public static void main(String args[]) {
-
-        kNearestNeigbour knn = new kNearestNeigbour(3);
-        knn.trainKNN();
-        Instance inst = new Instance("There is a way to go about things like that");
-        String lang = knn.predict(inst);
-        System.out.println(lang);
-        //knn.getCategoryInTrainingCorpusFromDocText("Delivery of gold arrived in a gold truck");
-    }
+//    public static void main(String args[]) {
+//
+//        kNearestNeigbour knn = new kNearestNeigbour(3);
+//        knn.trainKNN();
+//        Instance inst = new Instance("There is a way to go about things like that");
+//        String lang = knn.predict(inst);
+//        System.out.println(lang);
+//        //knn.getCategoryInTrainingCorpusFromDocText("Delivery of gold arrived in a gold truck");
+//    }
 
 }

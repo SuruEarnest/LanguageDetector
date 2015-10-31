@@ -112,18 +112,18 @@ public class NaiveBayes extends DataSet {
         return language;
     }
 
-    public static void main(String args[]) {
-
-        NaiveBayes ld = new NaiveBayes();
-        ld.trainUsingNaiveBayes();
-
-        // Instance inst = new Instance("Don't tell me it works like that");
-        Instance inst = new Instance("My name is suru earnest,I am a student of the university of lagos.I love to be a good student");
-
-        String lang = ld.predictUsingNaiveBayes(inst);
-        System.out.println("the predicted Language is = " + lang);
-        //System.out.println(ld.getVocabulary().size());
-
-    }
+//    public static void main(String args[]) {
+//
+//        NaiveBayes ld = new NaiveBayes();
+//        ld.trainUsingNaiveBayes();
+//
+//        // Instance inst = new Instance("Don't tell me it works like that");
+//        Instance inst = new Instance("My name is suru earnest,I am a student of the university of lagos.I love to be a good student");
+//
+//        String lang = ld.predictUsingNaiveBayes(inst);
+//        System.out.println("the predicted Language is = " + lang);
+//        //System.out.println(ld.getVocabulary().size());
+//
+//    }
 
 }

@@ -609,26 +609,26 @@ class Stemmer {
      * must be done outside the Stemmer class. Usage: Stemmer file-name
      * file-name ...
      */
-    public static void main(String[] args) {
-        //char[] w = new char[501];
-
-        
-        Stemmer s = new Stemmer();
-        System.out.print("Enter just any word:");
-        Scanner sc = new Scanner(System.in);
-        String word = sc.next();
-        char[] wordCharArray = word.toCharArray();
-
-        for (int i = 0; i < wordCharArray.length; i++) {
-
-            s.add(wordCharArray[i]);
-            
-        }
-        s.stem();
-        String stemmedWord = s.toString();
-        System.out.println("the stemmed Word = "+stemmedWord);
-
-        
+//    public static void main(String[] args) {
+//        //char[] w = new char[501];
+//
+//        
+//        Stemmer s = new Stemmer();
+//        System.out.print("Enter just any word:");
+//        Scanner sc = new Scanner(System.in);
+//        String word = sc.next();
+//        char[] wordCharArray = word.toCharArray();
+//
+//        for (int i = 0; i < wordCharArray.length; i++) {
+//
+//            s.add(wordCharArray[i]);
+//            
+//        }
+//        s.stem();
+//        String stemmedWord = s.toString();
+//        System.out.println("the stemmed Word = "+stemmedWord);
+//
+//        
         
         
 //        for (int i = 0; i < args.length; i++) {
@@ -683,5 +683,5 @@ class Stemmer {
 //                break;
 //            }
 //        }
-    }
+  //  }
 }

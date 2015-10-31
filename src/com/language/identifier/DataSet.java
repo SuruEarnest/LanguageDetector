@@ -332,12 +332,12 @@ public class DataSet {
         return languageKey;
     }
 
-    public static void main(String args[]) {
-
-        DataSet dt = new DataSet();
-        dt.loadTrainingData();
-        dt.buildVocabulary(dt.getTrainingCorpusMap());
-        System.out.println(dt.getAllDocsList());
-        // System.out.println("docs in english= " + dt.allDocsInClass("English"));
-    }
+//    public static void main(String args[]) {
+//
+//        DataSet dt = new DataSet();
+//        dt.loadTrainingData();
+//        dt.buildVocabulary(dt.getTrainingCorpusMap());
+//        System.out.println(dt.getAllDocsList());
+//        // System.out.println("docs in english= " + dt.allDocsInClass("English"));
+//    }
 }

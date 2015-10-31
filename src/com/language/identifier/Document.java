@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.language.identifier;
 
 import java.text.DecimalFormat;
@@ -117,31 +118,31 @@ public class Document {
         return similarity;//Double.parseDouble(formatted);
     }
 
-    public static void main(String args[]) {
-
-        Document doc1 = new Document("a Shipment");
-        List<Double> vector1 = doc1.getDocumentVector();
-        System.out.println(vector1);
-
-        Document doc2 = new Document("Delivery of silver arrived in a silver truck");
-        List<Double> vector2 = doc2.getDocumentVector();//must use the object of the new document to call its vector representation
-        System.out.println(vector2);
-
-        Document doc3 = new Document("Shipment of gold arrived in a truck");
-        List<Double> vector3 = doc3.getDocumentVector();
-        System.out.println(vector3);
-
-        Document queryDoc = new Document("gold silver truck ");
-        List<Double> queryVector = queryDoc.getDocumentVector();
-        System.out.println(queryVector);
-
-        double simi_vectro1 = queryDoc.vectorSimilarity(queryVector, vector1);
-        double simi_vectro2 = queryDoc.vectorSimilarity(queryVector, vector2);
-        double simi_vectro3 = queryDoc.vectorSimilarity(queryVector, vector3);
-
-        System.out.println("sim btw query vector and vector 1 = " + simi_vectro1);
-        System.out.println("sim btw query vector and vector 2 = " + simi_vectro2);
-        System.out.println("sim btw query vector and vector 3 = " + simi_vectro3);
-    }
+//    public static void main(String args[]) {
+//
+//        Document doc1 = new Document("a Shipment");
+//        List<Double> vector1 = doc1.getDocumentVector();
+//        System.out.println(vector1);
+//
+//        Document doc2 = new Document("Delivery of silver arrived in a silver truck");
+//        List<Double> vector2 = doc2.getDocumentVector();//must use the object of the new document to call its vector representation
+//        System.out.println(vector2);
+//
+//        Document doc3 = new Document("Shipment of gold arrived in a truck");
+//        List<Double> vector3 = doc3.getDocumentVector();
+//        System.out.println(vector3);
+//
+//        Document queryDoc = new Document("gold silver truck ");
+//        List<Double> queryVector = queryDoc.getDocumentVector();
+//        System.out.println(queryVector);
+//
+//        double simi_vectro1 = queryDoc.vectorSimilarity(queryVector, vector1);
+//        double simi_vectro2 = queryDoc.vectorSimilarity(queryVector, vector2);
+//        double simi_vectro3 = queryDoc.vectorSimilarity(queryVector, vector3);
+//
+//        System.out.println("sim btw query vector and vector 1 = " + simi_vectro1);
+//        System.out.println("sim btw query vector and vector 2 = " + simi_vectro2);
+//        System.out.println("sim btw query vector and vector 3 = " + simi_vectro3);
+//    }
 
 }

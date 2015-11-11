@@ -63,7 +63,6 @@ public class kNearestNeigbour extends DataSet {
 
     public void trainKNN() {
         //must be called before ever attempting to predict
-
         loadTrainingData();
         buildVocabulary(this.getTrainingCorpusMap());
         generateTrainingDocVectorList(this.getAllDocsList());//generating the document vector for each training sample

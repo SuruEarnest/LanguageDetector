@@ -682,6 +682,15 @@ class Stemmer {
 //                System.out.println("file " + args[i] + " not found");
 //                break;
 //            }
-//        }
-  //  }
+//        
+//  }
+    
+    
+    public static void main(String args[])
+    {
+      
+        String x = "1234567";
+        System.out.println(x.toCharArray()[2]);
+    
+    }
 }

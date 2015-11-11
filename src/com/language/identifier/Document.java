@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.language.identifier;
 
 import java.text.DecimalFormat;
@@ -36,7 +35,7 @@ public class Document {
         this.documentText = textDoc;
         dt.updateVocabulary(textDoc);
         vocabSet = dt.getVocabulary();
-       // System.out.println(vocabSet);
+
     }
 
     public String getDocumentText() {
@@ -54,27 +53,17 @@ public class Document {
         dt.updateVocabulary(textDoc);
         Iterator it = vocabSet.iterator();
 
-       // System.out.println("Text doc = " + textDoc);
-       // System.out.println("VocabSize = " + vocabSet.size());
-
+        // System.out.println("Text doc = " + textDoc);
+        // System.out.println("VocabSize = " + vocabSet.size());
         while (it.hasNext()) {
 
             String vocabWord = it.next().toString();
-           // System.out.println("vocab word = " + vocabWord);
-            //for (int tk = 0; tk < tokens.length; tk++) {
-            //  String wordTokenInTextDoc = tokens[tk];//this is the token of each word in the text document
             //now calculate the tf-idf of each word in this textDocument using the textDoc,allDocList and current term/token
             Double tfIdf = FeatureExtractor.tfIdf(textDoc, dt.getAllDocsList(), vocabWord);
-            //Double tf = new Double(FeatureExtractor.tf(vocabWord, textDoc));
-            // String formatted = formatter.format(tfIdf);
 
             vector.add(tfIdf);
-            // System.out.println("counter value = " + tk);
-            //}
 
         }
-
-       // System.out.println("doc vector size = " + vector.size());
         return vector;
 
     }
@@ -112,8 +101,8 @@ public class Document {
 
     //the vector1 is always the vocabulary document vector...while the vector2 is the test document vector
     public double vectorSimilarity(List<Double> vector1, List<Double> vector2) {
-        double similarity;
-        similarity = vectorDotProduct(vector1, vector2) / vectorMagnitude(vector1) * vectorMagnitude(vector2);
+
+        double similarity = vectorDotProduct(vector1, vector2) / vectorMagnitude(vector1) * vectorMagnitude(vector2);
         //String formatted = formatter.format(similarity);
         return similarity;//Double.parseDouble(formatted);
     }
@@ -144,5 +133,4 @@ public class Document {
 //        System.out.println("sim btw query vector and vector 2 = " + simi_vectro2);
 //        System.out.println("sim btw query vector and vector 3 = " + simi_vectro3);
 //    }
-
 }

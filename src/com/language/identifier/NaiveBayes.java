@@ -15,18 +15,18 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author Suru Earnest under the supervision of Victor Odumuyiwa(Ph.D),Computer
+ * @author Suru Earnest under the supervision of V.T Odumuyiwa(Ph.D),Computer
  * Science,University of Lagos,Akoka.
  */
 public class NaiveBayes extends DataSet {
 
-    DataSet datasetObject = new DataSet();
+    DataSet datasetObject;
 
-    private HashMap<String, Double> priorProbMap = new HashMap<>();
-    private HashMap<String, Double> nbProbMap = new HashMap<>();
+    //private HashMap<String, Double> priorProbMap = new HashMap<>();//prior probability for each language
+   // private HashMap<String, Double> nbProbMap = new HashMap<>();//this is the aposteriori probability map for each language
 
     public NaiveBayes() {
-
+       datasetObject = new DataSet();
     }
 
     private HashMap<String, Double> naiveBayesProbabilities(ArrayList<String> langClassesList, String testData) {
@@ -104,7 +104,7 @@ public class NaiveBayes extends DataSet {
     public String predictUsingNaiveBayes(Instance inst) {
 
         String textValue = inst.loadData();
-        System.out.println("preprocessed text value = " + textValue);
+       // System.out.println("preprocessed text value = " + textValue);
         HashMap<String, Double> x = naiveBayesProbabilities(getLanguageClasses(), textValue);
         double highestProbability = highestValue(x.values());
         String language = getPredictedLanguage(x, highestProbability);

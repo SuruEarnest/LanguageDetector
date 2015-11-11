@@ -22,12 +22,14 @@ public class kNearestNeigbour extends DataSet {
 
     private int k;
     //private DataSet dataObj = new DataSet();
-    private List<List<Double>> trainingDocVectorList = new ArrayList<>();
-    private HashMap<String, List<Double>> docToDocVectorMap = new HashMap<>();
+    private List<List<Double>> trainingDocVectorList; //= new ArrayList<>();
+    private HashMap<String, List<Double>> docToDocVectorMap;//= new HashMap<>();
 
     public kNearestNeigbour(int k) {
 
         this.k = k;
+        trainingDocVectorList = new ArrayList<>();
+        docToDocVectorMap = new HashMap<>();
 
     }
 
@@ -66,7 +68,7 @@ public class kNearestNeigbour extends DataSet {
         loadTrainingData();
         buildVocabulary(this.getTrainingCorpusMap());
         generateTrainingDocVectorList(this.getAllDocsList());//generating the document vector for each training sample
-        System.out.println("FINISHED TRAINING KNN!");
+        //System.out.println("FINISHED TRAINING KNN!");
 
     }
 
@@ -252,5 +254,4 @@ public class kNearestNeigbour extends DataSet {
 //        System.out.println(lang);
 //        //knn.getCategoryInTrainingCorpusFromDocText("Delivery of gold arrived in a gold truck");
 //    }
-
 }

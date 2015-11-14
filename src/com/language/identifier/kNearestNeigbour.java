@@ -41,8 +41,7 @@ public class kNearestNeigbour extends DataSet {
 
     private void generateTrainingDocVectorList(List<List<String>> allDocsList) {
         //get a list of the feature vectors of all the training documents
-
-        // List<List<String>> allDocsList = dataObj.getAllDocsList();
+       // List<List<String>> allDocsList = dataObj.getAllDocsList();
         for (int i = 0; i < allDocsList.size(); i++) {
             //loop larg list
             List<String> docsList = allDocsList.get(i);//getting the lists in the large list NB:each list contains strings of values representing the docs
@@ -56,7 +55,6 @@ public class kNearestNeigbour extends DataSet {
             }
 
         }
-        //return trainingDocVectorList;
     }
 
     public List<List<Double>> getTrainingDocVectorList() {

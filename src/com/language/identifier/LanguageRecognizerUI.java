@@ -328,7 +328,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
             //knn
             final kNearestNeigbour knn = new kNearestNeigbour(5);
 
-            final long startTrainTime = System.currentTimeMillis();
+           
 
             progressBar.setIndeterminate(true);
 
@@ -337,19 +337,18 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                 // a new thread
                 @Override
                 public void run() {
-
+                   
+                    final long startTrainTime = System.nanoTime();   
                     knn.trainKNN();
-
-                    long endTrainTime = System.currentTimeMillis();
+                    long endTrainTime = System.nanoTime();
                     final long trainingTime = (endTrainTime - startTrainTime);
 
                     //new instance for prediction
                     Instance inst = new Instance(testDataField.getText());
 
-                    long startPredictionTime = System.currentTimeMillis();
+                    long startPredictionTime = System.nanoTime();
                     final String lang = knn.predict(inst);
-
-                    long endPredictionTime = System.currentTimeMillis();
+                    long endPredictionTime = System.nanoTime();
                     final long predictionTime = (endPredictionTime - startPredictionTime);
                     System.out.println(lang);
 
@@ -373,7 +372,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
             //knn
             final NaiveBayes nb = new NaiveBayes();
 
-            final long startTrainTime = System.currentTimeMillis();
+           
 
             progressBar.setIndeterminate(true);
             new Thread(new Runnable() {
@@ -381,20 +380,19 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                 // a new thread
                 @Override
                 public void run() {
-
+                    
+                    final long startTrainTime = System.nanoTime();
                     nb.trainUsingNaiveBayes();
-
-                    long endTrainTime = System.currentTimeMillis();
-                    final long trainingTime = (endTrainTime - startTrainTime);
+                    long endTrainTime = System.nanoTime();
+                    final long trainingTime = (endTrainTime - startTrainTime)/1000000000;
 
                     //new instance for prediction
                     Instance inst = new Instance(testDataField.getText());
 
-                    long startPredictionTime = System.currentTimeMillis();
+                    long startPredictionTime = System.nanoTime();
                     final String lang = nb.predictUsingNaiveBayes(inst);
-
-                    long endPredictionTime = System.currentTimeMillis();
-                    final long predictionTime = (endPredictionTime - startPredictionTime);
+                    long endPredictionTime = System.nanoTime();
+                    final long predictionTime = (endPredictionTime - startPredictionTime)/1000000000;
                     System.out.println(lang);
 
                     SwingUtilities.invokeLater(new Runnable() {
@@ -494,45 +492,6 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
 
     }
 
-    private class progressListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Task tsk = new Task();
-            tsk.start();
-            if (!(progressBar.getValue() < progressBar.getMaximum())) {
-
-                tsk.stop();
-
-            }
-
-        }
-
-    }
-
-    private class Task extends Thread {
-
-        int count = 0;
-
-        public Task() {
-        }
-
-        public void run() {
-
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-
-                    progressBar.setValue(count);
-                    count = count + 5;
-                }
-            });
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-            }
-
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox classifierCombo;

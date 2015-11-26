@@ -11,42 +11,40 @@ import java.util.ListIterator;
 
 /**
  * @author Suru Earnest under the supervision of V.T Odumuyiwa(Ph.D),Computer
- * Science,University of Lagos,Akoka.
+ * Sciences,University of Lagos,Akoka.
  */
 public class NaiveBayes extends DataSet {
 
-    DataSet datasetObject;
-
-    //private HashMap<String, Double> priorProbMap = new HashMap<>();//prior probability for each language
-   // private HashMap<String, Double> nbProbMap = new HashMap<>();//this is the aposteriori probability map for each language
-
+ 
+    private String language;
+    private HashMap<String,Double> naiveBayesProbabilities;
+   
     public NaiveBayes() {
-       datasetObject = new DataSet();
+     
+        naiveBayesProbabilities = new HashMap<>();
+     
     }
 
     private HashMap<String, Double> naiveBayesProbabilities(ArrayList<String> langClassesList, String testData) {
-
+        //this computes and maps each langauge category/class to its respective probability given the testData
         ListIterator<String> languageClassesListIt = langClassesList.listIterator();
 
-        HashMap<String, Double> nbp = new HashMap<>();
+       
 
         while (languageClassesListIt.hasNext()) {
             String languageClass = languageClassesListIt.next();
             double priorProb = getNumberOfDocsInClass(languageClass) / getNumberOfTrainingDocs();
             //using laplace smoothing technique
             double count1 = countInClass(testData, allDocsInClass(languageClass)) + 1;
-            //System.out.println("count1 = " + count1);
-
+            //
             double count2 = countInClass(vocabularyToString(), allDocsInClass(languageClass)) + getVocabulary().size();
-            //System.out.println("count2 = " + count2);
-
             double aposterioriProb = count1 / count2;
             double naiveBayesProb = (priorProb * aposterioriProb);
 
-            nbp.put(languageClass, naiveBayesProb);
+            naiveBayesProbabilities.put(languageClass, naiveBayesProb);
         }
 
-        return nbp;
+        return naiveBayesProbabilities;
     }
 
     private int countInClass(String words, String allDocsInClass) {
@@ -102,7 +100,7 @@ public class NaiveBayes extends DataSet {
        // System.out.println("preprocessed text value = " + textValue);
         HashMap<String, Double> x = naiveBayesProbabilities(getLanguageClasses(), textValue);
         double highestProbability = highestValue(x.values());
-        String language = getPredictedLanguage(x, highestProbability);
+        language = getPredictedLanguage(x, highestProbability);
 
         return language;
     }

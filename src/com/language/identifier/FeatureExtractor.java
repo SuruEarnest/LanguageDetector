@@ -10,10 +10,6 @@ import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Steps: 1.Removing stop words. 2 .Stemming 3.keywords frequency calculation
- *
- */
 public class FeatureExtractor {
 
     public String preProcess(String fileContentInString) {
@@ -21,6 +17,7 @@ public class FeatureExtractor {
         String newString = fileContentInString.toLowerCase().replaceAll("[\"-(),@!{}><'?.\'/`~#$%^&*]", " ");
         return newString;
     }
+
     public static int tf(String term, String documentText) {
 
         String tokens[] = documentText.split(" ");
@@ -40,7 +37,7 @@ public class FeatureExtractor {
 
     public static double idf(String term, List< List<String>> docs) {
 
-        double totalNumOfDocs = 0;
+        double totalNumOfDocs = 0;//this holds the total number of documents
         double numOfDocsWhereTermAppears = 0;//this is document Frequency
         ListIterator allDocsListIterator = docs.listIterator();
 
@@ -58,10 +55,7 @@ public class FeatureExtractor {
                 String tokens[] = docString.split(" ");//splitting into tokens array
 
                 for (int tk = 0; tk < tokens.length; tk++) {
-                    //   System.out.println("current token "+tokens[i]+" in "+docString);
                     if (term.equalsIgnoreCase(FeatureExtractor.callStemmer(tokens[tk]))) {
-
-                        //  System.out.println("token " + tokens[tk] + " = is same as the term  "+term);
                         numOfDocsWhereTermAppears++;
                         break;
                     } else {
@@ -72,7 +66,7 @@ public class FeatureExtractor {
             }
 
         }
-        double value = (totalNumOfDocs / (1+numOfDocsWhereTermAppears));
+        double value = (totalNumOfDocs / (1 + numOfDocsWhereTermAppears));
         //System.out.println("fraction value = " + value);
         return Math.log10(value);
     }
@@ -169,5 +163,4 @@ public class FeatureExtractor {
 //
 //        System.out.println("tfidf from the separate functions = " + tf * idf);
 //    }
-
 }

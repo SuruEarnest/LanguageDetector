@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  *
@@ -23,35 +22,33 @@ public class kNearestNeigbour extends DataSet {
     private int k;
     //private DataSet dataObj = new DataSet();
     private List<List<Double>> trainingDocVectorList; //= new ArrayList<>();
-    private HashMap<String, List<Double>> docToDocVectorMap;//= new HashMap<>();
+    private HashMap<String, List<Double>> documentToDocVectorMap;//= new HashMap<>();
 
     public kNearestNeigbour(int k) {
 
         this.k = k;
         trainingDocVectorList = new ArrayList<>();
-        docToDocVectorMap = new HashMap<>();
+        documentToDocVectorMap = new HashMap<>();
 
     }
 
     //this method takes the list of all the training docs as parameter and generates a HashMap that maps every document in the list to it's respective document vector
     private HashMap<String, List<Double>> getDocToDocVectorMap() {
-
-        return this.docToDocVectorMap;
+        return this.documentToDocVectorMap;
     }
 
     private void generateTrainingDocVectorList(List<List<String>> allDocsList) {
         //get a list of the feature vectors of all the training documents
-       // List<List<String>> allDocsList = dataObj.getAllDocsList();
         for (int i = 0; i < allDocsList.size(); i++) {
             //loop larg list
-            List<String> docsList = allDocsList.get(i);//getting the lists in the large list NB:each list contains strings of values representing the docs
+            List<String> docsList = allDocsList.get(i);//getting the lists in the large list NB:each list contains strings of values representing the documents
             //System.out.println("current training doc = " + docsList);
             for (int j = 0; j < docsList.size(); j++) {//loop thru the current list in the large list
                 String docText = docsList.get(j);//gets the current doc in the current list
                 //now calculate the document vector of this particular doc...
                 Document doc = new Document(docText);
                 trainingDocVectorList.add(doc.getDocumentVector());
-                docToDocVectorMap.put(docText, doc.getDocumentVector());
+                documentToDocVectorMap.put(docText, doc.getDocumentVector());
             }
 
         }
@@ -71,7 +68,7 @@ public class kNearestNeigbour extends DataSet {
     }
 
     private static String transformDocumentVectorToDocumentText(HashMap<String, List<Double>> docToDocVectorMap, List<Double> documentVector) {
-        //get dccumentText given the documentVector using the docToDocVectorMap
+        //get dccumentText given the documentVector using the documentToDocVectorMap
 
         String docText = " ";
 
@@ -106,7 +103,7 @@ public class kNearestNeigbour extends DataSet {
                     for (Map.Entry entry : trainingCorpus.entrySet()) {
                         if (docTextList.equals(entry.getValue())) {
                             languageCategory = entry.getKey().toString();
-                            break; //break out because it is assumed to be a one to one map,no other value is assigned to such ket
+                            break; //break out because it is assumed to be a one to one map,no other value is assigned to such key
                         }
                     }
 
@@ -125,7 +122,6 @@ public class kNearestNeigbour extends DataSet {
         String languageCategoryInTrainingDocs = getCategoryInTrainingCorpusFromDocText(docText);
 
         if (languageCategoryInTrainingDocs.equalsIgnoreCase(languageCategory)) {
-
             return 1;
         } else {
             return 0;
@@ -139,9 +135,8 @@ public class kNearestNeigbour extends DataSet {
         String testDataInString = inst.loadData();
         Document testDoc = new Document(testDataInString);
 
-        //doc vector-->similarity value
+        //document vector-->similarity value
         HashMap<List<Double>, Double> similarityMap = new HashMap<>();
-        //List<Double>similarityList = new ArrayList<>();
 
         //this is the the test document vector
         List<Double> testDocVector = testDoc.getDocumentVector();
@@ -150,7 +145,7 @@ public class kNearestNeigbour extends DataSet {
         // above line gets all the training docs and calculates their respective document vector and stores them in a list
 
         double similarityArray[] = new double[trainDocVectorList.size()];
-        List<Double> largest_k_similarities = new ArrayList<>();
+
         //Now generating a HashMap that contains each docVectors and their similarities with the testDocVector
         for (int i = 0; i < trainDocVectorList.size(); i++) {
 
@@ -167,23 +162,23 @@ public class kNearestNeigbour extends DataSet {
         }
 
         Arrays.sort(similarityArray);//sorted Array in ascending order
-        largest_k_similarities = kLargestSimilarities(this.k, similarityArray);//gets a list of k-largest similarities
+        List<Double> largest_k_similarities = kLargestSimilarities(this.k, similarityArray);//gets a list of k-largest similarities
 
-        //use this list to get all the knn collection of the test document vectors from the similarityMap
-        List<List<Double>> similarVectors = new ArrayList<>();//knn collection of similar vectors
         //now use the largest_k_similarties and the similarity map list to get the relevant knn collection document vectors from the similarity HashMap
-        //        System.err.println("original similarity map = "+similarityMap);
-        //        System.out.println("**************************************************");
-        similarVectors = kNNCollectionOfSimilarVectors(largest_k_similarities, similarityMap);
-        HashMap<String, Double> probabilityMap = calculateProbabilities(this.getLanguageClasses(), largest_k_similarities, similarVectors);
+        //use this list to get all the knn collection of the test document vectors from the similarityMap...
+        //knn collection of similar vectors
+        List<List<Double>> similarVectors = kNNCollectionOfSimilarVectors(largest_k_similarities, similarityMap);
+
+        HashMap<String, Double> probabilityMap = computeProbabilities(this.getLanguageClasses(), largest_k_similarities, similarVectors);
         //System.out.println("print prob map = "+probabilityMap);
         double highestProbability = highestValue(probabilityMap.values());
         String language = getPredictedLanguage(probabilityMap, highestProbability);
 
         return language;
+
     }
 
-    private HashMap<String, Double> calculateProbabilities(ArrayList<String> langCategory, List<Double> largest_k_similarities, List<List<Double>> similarVectors) {
+    private HashMap<String, Double> computeProbabilities(ArrayList<String> langCategory, List<Double> largest_k_similarities, List<List<Double>> similarVectors) {
         //probability map which is a mapping languageCategory to it's probbilistic value
         HashMap<String, Double> probMap = new HashMap<>();
         // ArrayList<String> langCategory = this.getLanguageClasses();
@@ -192,14 +187,10 @@ public class kNearestNeigbour extends DataSet {
             double probSum = 0.0;
             //for each  similarity value largest_k_similarities list
             for (int j = 0; j < largest_k_similarities.size(); j++) {
-
                 probSum = probSum + largest_k_similarities.get(j) * categoryAttributeFunctionY(similarVectors.get(j), langCategory.get(i));
-
             }
             probMap.put(langCategory.get(i), probSum);
         }
-        /////finish calculating the probability map...
-
         return probMap;
     }
 
@@ -250,6 +241,5 @@ public class kNearestNeigbour extends DataSet {
 //        Instance inst = new Instance("There is a way to go about things like that");
 //        String lang = knn.predict(inst);
 //        System.out.println(lang);
-//        //knn.getCategoryInTrainingCorpusFromDocText("Delivery of gold arrived in a gold truck");
 //    }
 }

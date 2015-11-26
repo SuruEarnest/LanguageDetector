@@ -51,6 +51,7 @@ public class Instance {
     }
 
     public Instance(String text) {
+        //for a constructor with string value parameter
         this.testDoc = fe.preProcess(text);
     }
 

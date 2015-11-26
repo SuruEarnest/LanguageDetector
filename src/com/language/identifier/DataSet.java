@@ -301,7 +301,7 @@ public class DataSet {
     }
 
     public double highestValue(Collection<Double> val) {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     
         double valu = 0.0, max = 0.0;
         Iterator it = val.iterator();
 

@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class FeatureExtractor {
 
     public String preProcess(String fileContentInString) {
-
+        //this method simply preprocess the text contents of a file by removing different characters as seen  below
         String newString = fileContentInString.toLowerCase().replaceAll("[\"-(),@!{}><'?.\'/`~#$%^&*]", " ");
         return newString;
     }

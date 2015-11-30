@@ -15,6 +15,7 @@ public class FeatureExtractor {
     public String preProcess(String fileContentInString) {
         //this method simply preprocess the text contents of a file by removing different characters as seen  below
         String newString = fileContentInString.toLowerCase().replaceAll("[\"-(),@!{}><'?.\'/`~#$%^&*]", " ");
+        
         return newString;
     }
 
@@ -28,8 +29,7 @@ public class FeatureExtractor {
             if (term.equalsIgnoreCase(FeatureExtractor.callStemmer(tokens[i]))) {
 
                 count = count + 1;
-                // System.out.println("Yaaayyy..." + term + "is found here = " + count);
-
+            
             }
         }
         return count;

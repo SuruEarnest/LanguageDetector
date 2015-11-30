@@ -20,7 +20,7 @@ public class Document {
 
     private DecimalFormat formatter = new DecimalFormat("#.####");
     private DataSet dt;
-    Set<String> vocabSet;
+    private Set<String> vocabSet;
     FeatureExtractor fe = new FeatureExtractor();
     private String documentText;
 

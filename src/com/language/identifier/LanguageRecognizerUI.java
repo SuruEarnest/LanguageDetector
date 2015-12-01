@@ -1,20 +1,12 @@
 package com.language.identifier;
-
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import sun.net.ProgressListener;
 
 /**
  *
@@ -44,22 +36,12 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
     }
 
     private File getFile() {
-
+        
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.showOpenDialog(this);
-
-        // if (result == JFileChooser.CANCEL_OPTION) {
-        //System.exit(1);
-        //  }
         File fileObject = fileChooser.getSelectedFile();
 
-        // display error if invalid
-        // if ((fileObject == null) || (fileObject.getName().equals(""))) {
-        //JOptionPane.showMessageDialog(this, "Invalid Name",
-        // "Invalid Name", JOptionPane.ERROR_MESSAGE);
-        //System.exit(1);
-        // } // end if
         return fileObject;
 
     }
@@ -80,7 +62,6 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         statusArea = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
-        loadDataBtn = new javax.swing.JButton();
         trainBtn = new javax.swing.JButton();
         classifierCombo = new javax.swing.JComboBox();
         selectData = new javax.swing.JComboBox();
@@ -90,10 +71,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        numberCombo = new javax.swing.JComboBox();
         progressBar = new javax.swing.JProgressBar();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,13 +94,6 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(statusArea);
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        loadDataBtn.setText("Load Training Data set");
-        loadDataBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadDataBtnActionPerformed(evt);
-            }
-        });
 
         trainBtn.setText("Train Classifier and Predict");
         trainBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +163,6 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                     .addComponent(selectData, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(trainBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                     .addComponent(classifierCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loadDataBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -200,8 +170,6 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(loadDataBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(selectData, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,34 +180,20 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {classifierCombo, loadDataBtn});
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setText("Specify the number of languages:");
-
-        numberCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(numberCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(383, 383, 383)
+                .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(numberCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -273,7 +227,6 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Operations", jPanel2);
-        jTabbedPane1.addTab("Accuracy Evaluation", jTabbedPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -295,24 +248,41 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadDataBtnActionPerformed
+    private void selectDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDataActionPerformed
         // TODO add your handling code here:
-        if (numberCombo.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Message", "Please,select number of languages to recognize", JOptionPane.INFORMATION_MESSAGE);
+        if (selectData.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Please,select appropriate option for test data instance", "Message", JOptionPane.INFORMATION_MESSAGE);
+        } else if (selectData.getSelectedIndex() == 1) {
+            //for manually entering data
+
+            testDataField.setEditable(true);
+            testDataField.requestFocusInWindow();
 
         } else {
+            //for loading data from the Jfile chooser
+            File trainingFile = this.getFile();
 
-//            int numberOfLanguages = Integer.parseInt(numberCombo.getSelectedItem().toString());
-//            int count = 0;
-//
-//            while (count < numberOfLanguages) {
-//                  //pop up the window
-//                count++;
-//            }
+            if (trainingFile != null) {
+                if (trainingFile.exists() && trainingFile.canRead() && trainingFile.getName().endsWith(".txt")) {
+
+                    String fileInStrinFormat = new FeatureExtractor().FileContentInStringFormat(trainingFile);
+                    testDataField.setText(fileInStrinFormat);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "You can only load text files for now", "File Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
         }
+    }//GEN-LAST:event_selectDataActionPerformed
 
-
-    }//GEN-LAST:event_loadDataBtnActionPerformed
+    private void classifierComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classifierComboActionPerformed
+        // TODO add your handling code here:
+        if (classifierCombo.getSelectedIndex() >= 1) {
+            testDataField.setEditable(true);
+        }
+    }//GEN-LAST:event_classifierComboActionPerformed
 
     private void trainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainBtnActionPerformed
         // TODO add your handling code here:
@@ -323,8 +293,6 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
             //knn
             final kNearestNeigbour knn = new kNearestNeigbour(5);
 
-           
-
             progressBar.setIndeterminate(true);
 
             new Thread(new Runnable() {
@@ -332,8 +300,8 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                 // a new thread
                 @Override
                 public void run() {
-                   
-                    final long startTrainTime = System.nanoTime();   
+
+                    final long startTrainTime = System.nanoTime();
                     knn.trainKNN();
                     long endTrainTime = System.nanoTime();
                     final long trainingTime = (endTrainTime - startTrainTime);
@@ -364,10 +332,8 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
 
         } else if (classifierCombo.getSelectedIndex() == 2) {
 
-            //knn
+            //naive bayes
             final NaiveBayes nb = new NaiveBayes();
-
-           
 
             progressBar.setIndeterminate(true);
             new Thread(new Runnable() {
@@ -375,7 +341,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                 // a new thread
                 @Override
                 public void run() {
-                    
+
                     final long startTrainTime = System.nanoTime();
                     nb.trainUsingNaiveBayes();
                     long endTrainTime = System.nanoTime();
@@ -406,45 +372,7 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
             }).start();
         }
 
-
     }//GEN-LAST:event_trainBtnActionPerformed
-
-    private void classifierComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classifierComboActionPerformed
-        // TODO add your handling code here:
-        if (classifierCombo.getSelectedIndex() >= 1) {
-            testDataField.setEditable(true);
-        }
-
-    }//GEN-LAST:event_classifierComboActionPerformed
-
-    private void selectDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDataActionPerformed
-        // TODO add your handling code here:
-        if (selectData.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Please,select appropriate option for test data instance", "Message", JOptionPane.INFORMATION_MESSAGE);
-        } else if (selectData.getSelectedIndex() == 1) {
-            //for manually entering data
-
-            testDataField.setEditable(true);
-            testDataField.requestFocusInWindow();
-
-        } else {
-            //for loading data from the Jfile chooser
-            File trainingFile = this.getFile();
-
-            if (trainingFile != null) {
-                if (trainingFile.exists() && trainingFile.canRead() && trainingFile.getName().endsWith(".txt")) {
-
-                    String fileInStrinFormat = new FeatureExtractor().FileContentInStringFormat(trainingFile);
-                    testDataField.setText(fileInStrinFormat);
-
-                } else {
-
-                    JOptionPane.showMessageDialog(null, "You can only load text files for now", "File Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-
-        }
-    }//GEN-LAST:event_selectDataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -490,7 +418,6 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox classifierCombo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -502,9 +429,6 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JButton loadDataBtn;
-    private javax.swing.JComboBox numberCombo;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JComboBox selectData;
     private javax.swing.JTextArea statusArea;

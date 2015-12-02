@@ -10,8 +10,9 @@ import java.util.HashMap;
 import java.util.ListIterator;
 
 /**
- * @author Suru Earnest under the supervision of V.T Odumuyiwa(Ph.D),Computer
- * Sciences,University of Lagos,Akoka.
+ * @author      Suru Earnest Erihbra <serihbrah@gmail.com>
+ * @version     1.0                
+ * @since       2015-12-02         
  */
 public class NaiveBayes extends DataSet {
 
@@ -24,6 +25,7 @@ public class NaiveBayes extends DataSet {
         naiveBayesProbabilities = new HashMap<>();
      
     }
+    
 
     private HashMap<String, Double> naiveBayesProbabilities(ArrayList<String> langClassesList, String testData) {
         //this computes and maps each langauge category/class to its respective probability given the testData

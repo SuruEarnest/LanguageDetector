@@ -14,8 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
- * @author suruearnest
+ * @author      Suru Earnest Erihbra <serihbrah@gmail.com>
+ * @version     1.0                
+ * @since       2015-12-02         
  */
 public class kNearestNeigbour extends DataSet {
 

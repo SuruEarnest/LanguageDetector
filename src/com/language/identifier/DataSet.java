@@ -15,22 +15,34 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
+
 /**
- * @author suruearnest
- *
+ * @author      Suru Earnest Erihbra <serihbrah@gmail.com>
+ * @version     1.0                
+ * @since       2015-12-02         
  */
+
+
 public class DataSet {
 
-    private ArrayList<String> langClass = new ArrayList<>();
-    private final Set<String> vocabulary = new HashSet<>();
+    private ArrayList<String> langClass = new ArrayList<>();//this is a list of all the languages
+    private final Set<String> vocabulary = new HashSet<>(); //this is a set of all the tokens generated from the training documents
+    //this is helps to map each language category to its training documents
     private HashMap<String, ArrayList<String>> trainingCorpus = new HashMap<>();
+    //this is a list of all the list of documents
     private List<List<String>> allDocsList = new ArrayList<>();
+    //this shall be used the number of training corpus
     private int numberOfTrainingDocs;
 
+    
     public DataSet() {
 
     }
 
+    
+    /**
+     * this helps to load all the hard coded training documents in string format
+    */
     public void loadTrainingData() {
 
         String docEng1 = "On 30 September 2015, Russia started a military intervention in the Syrian Civil War.[59] It consisted of air strikes"
@@ -181,6 +193,10 @@ public class DataSet {
 
     }
 
+    /**
+     * gets the list of registered language category i.e English,Yoruba,Hausa,and Igbo
+     * @return an array List of string type 
+     */
     public ArrayList<String> getLanguageClasses() {
         return langClass;
     }
@@ -191,16 +207,32 @@ public class DataSet {
      * corpus
      *
      *
-     * @return integer value
+     * @return integer value type
      */
     private int getNumberOfLanguageCategories() {
         return trainingCorpus.size();
     }
 
+    /**
+     * <p>
+     * this helps to get the map that links each language category/class 
+     * to its training corpus
+     * <p>
+     *
+     *
+     * @return a HashMap whose keys are the language category/class in string and values are Array List of training documents
+     */
     public HashMap<String, ArrayList<String>> getTrainingCorpusMap() {
         return this.trainingCorpus;
     }
 
+    /**
+     *<>
+     * the private method {@link #setNumberOfTrainingDocs} has been called internally to set this value
+     * so it's safe to call {@link getNumberOfTrainingDocs() withour fear}
+     *<>
+     *@return   total number of training documents 
+     */
     public double getNumberOfTrainingDocs() {
         return this.numberOfTrainingDocs;
     }
@@ -209,7 +241,17 @@ public class DataSet {
         this.numberOfTrainingDocs = numOfDocs;
     }
 
+    /**
+     * <>this helps to obtain the number of training documents in a language category/class<>
+     * @param specLangClass   
+     * <p>this variable is used to specify the language category/class.
+     *  the value specified is used as a key to get the arrayList of documents in that class
+     * <p>
+     * @return the number of documents (integer type )in the specified class is returned as expected
+     */
     public double getNumberOfDocsInClass(String specLangClass) {
+        
+        //using the training corpus key
         ArrayList<String> langClassList = trainingCorpus.get(specLangClass);
 
         System.out.println("The number of docs in " + specLangClass + " = " + langClassList.size());
@@ -331,12 +373,13 @@ public class DataSet {
         return languageKey;
     }
 
-//    public static void main(String args[]) {
-//
-//        DataSet dt = new DataSet();
-//        dt.loadTrainingData();
-//        dt.buildVocabulary(dt.getTrainingCorpusMap());
-//        System.out.println(dt.getAllDocsList());
-//        // System.out.println("docs in english= " + dt.allDocsInClass("English"));
-//    }
+    public static void main(String args[]) {
+
+        DataSet dt = new DataSet();
+        dt.loadTrainingData();
+        dt.buildVocabulary(dt.getTrainingCorpusMap());
+        System.out.println(dt.getAllDocsList());
+        // System.out.println("docs in english= " + dt.allDocsInClass("English"));
+        
+    }
 }

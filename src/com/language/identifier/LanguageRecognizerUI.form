@@ -119,6 +119,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="testDataFieldKeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -297,8 +300,8 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="383" max="-2" attributes="0"/>
-                          <Component id="progressBar" pref="263" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
+                          <Component id="progressBar" pref="314" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

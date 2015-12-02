@@ -10,6 +10,11 @@ import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author      Suru Earnest Erihbra <serihbrah@gmail.com>
+ * @version     1.0                
+ * @since       2015-12-02         
+ */
 public class FeatureExtractor {
 
     public String preProcess(String fileContentInString) {

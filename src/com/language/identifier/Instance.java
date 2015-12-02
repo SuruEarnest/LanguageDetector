@@ -12,8 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author suruearnest
+ * @author      Suru Earnest Erihbra <serihbrah@gmail.com>
+ * @version     1.0                
+ * @since       2015-12-02         
  */
 public class Instance {
 

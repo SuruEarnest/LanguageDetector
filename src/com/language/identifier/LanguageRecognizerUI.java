@@ -83,6 +83,11 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         testDataField.setLineWrap(true);
         testDataField.setRows(5);
         testDataField.setBorder(javax.swing.BorderFactory.createTitledBorder("Test Data Content"));
+        testDataField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                testDataFieldKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(testDataField);
 
         statusArea.setEditable(false);
@@ -185,8 +190,8 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(383, 383, 383)
-                .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addGap(332, 332, 332)
+                .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -301,17 +306,17 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                 @Override
                 public void run() {
 
-                    final long startTrainTime = System.nanoTime();
+                    final long startTrainTime = System.currentTimeMillis();
                     knn.trainKNN();
-                    long endTrainTime = System.nanoTime();
+                    long endTrainTime = System.currentTimeMillis();
                     final long trainingTime = (endTrainTime - startTrainTime);
 
                     //new instance for prediction
                     Instance inst = new Instance(testDataField.getText());
 
-                    long startPredictionTime = System.nanoTime();
+                    long startPredictionTime = System.currentTimeMillis();
                     final String lang = knn.predict(inst);
-                    long endPredictionTime = System.nanoTime();
+                    long endPredictionTime = System.currentTimeMillis();
                     final long predictionTime = (endPredictionTime - startPredictionTime);
                     System.out.println(lang);
 
@@ -321,8 +326,8 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                             progressBar.setIndeterminate(false);
                             statusArea.setText("");
                             statusArea.setText("The Predicted Language of the above Text = " + lang);
-                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in training = " + trainingTime);
-                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in prediction = " + predictionTime);
+                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in training = " + trainingTime+" milliseconds");
+                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in prediction = " + predictionTime+" milliseconds");
                             statusArea.setText(statusArea.getText() + "\nClassifier Name:" + classifierCombo.getSelectedItem());
                         }
                     });
@@ -342,18 +347,18 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                 @Override
                 public void run() {
 
-                    final long startTrainTime = System.nanoTime();
+                    final long startTrainTime = System.currentTimeMillis();
                     nb.trainUsingNaiveBayes();
-                    long endTrainTime = System.nanoTime();
-                    final long trainingTime = (endTrainTime - startTrainTime)/1000000000;
+                    long endTrainTime = System.currentTimeMillis();
+                    final long trainingTime = (endTrainTime - startTrainTime);
 
                     //new instance for prediction
                     Instance inst = new Instance(testDataField.getText());
 
-                    long startPredictionTime = System.nanoTime();
+                    long startPredictionTime = System.currentTimeMillis();
                     final String lang = nb.predictUsingNaiveBayes(inst);
-                    long endPredictionTime = System.nanoTime();
-                    final long predictionTime = (endPredictionTime - startPredictionTime)/1000000000;
+                    long endPredictionTime = System.currentTimeMillis();
+                    final long predictionTime = (endPredictionTime - startPredictionTime);
                     System.out.println(lang);
 
                     SwingUtilities.invokeLater(new Runnable() {
@@ -362,8 +367,8 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
                             progressBar.setIndeterminate(false);
                             statusArea.setText("");
                             statusArea.setText("The Predicted Language of the above Text = " + lang);
-                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in training = " + trainingTime);
-                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in prediction = " + predictionTime);
+                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in training = " + trainingTime+" millisecons");
+                            statusArea.setText(statusArea.getText() + "\nTotal Time spent in prediction = " + predictionTime+" milliseconds");
                             statusArea.setText(statusArea.getText() + "\nClassifier Name:" + classifierCombo.getSelectedItem());
                         }
                     });
@@ -373,6 +378,13 @@ public class LanguageRecognizerUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_trainBtnActionPerformed
+
+    private void testDataFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_testDataFieldKeyTyped
+        // TODO add your handling code here:
+       
+     
+        
+    }//GEN-LAST:event_testDataFieldKeyTyped
 
     /**
      * @param args the command line arguments

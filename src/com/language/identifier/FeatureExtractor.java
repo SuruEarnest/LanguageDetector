@@ -17,6 +17,12 @@ import java.util.logging.Logger;
  */
 public class FeatureExtractor {
 
+    /**
+     * <p> This method simply helps to remove every appearance of 
+     * non alphabetic charactersIt also helps to convert the fileContentInString format into lower case<p>
+     * @param fileContentInString
+     * @return 
+     */
     public String preProcess(String fileContentInString) {
         //this method simply preprocess the text contents of a file by removing different characters as seen  below
         String newString = fileContentInString.toLowerCase().replaceAll("[\"-(),@!{}><'?.\'/`~#$%^&*]", " ");
@@ -24,11 +30,16 @@ public class FeatureExtractor {
         return newString;
     }
 
+    /**
+     * Simply Computes the term frequency of particular term in a document
+     * @param term   the word whose frequency is to be computed
+     * @param documentText    the document in string format
+     * @return an integer value for the frequency of the specified term
+     */
     public static int tf(String term, String documentText) {
 
         String tokens[] = documentText.split(" ");
         int count = 0;
-
         for (int i = 0; i < tokens.length; i++) {
 
             if (term.equalsIgnoreCase(FeatureExtractor.callStemmer(tokens[i]))) {
@@ -40,6 +51,12 @@ public class FeatureExtractor {
         return count;
     }
 
+    /**
+     * This method simply helps to compute the inverse document frequency of a term
+     * @param term   the word whose IDF is to be computed 
+     * @param docs   the List of all the documents considered
+     * @return 
+     */
     public static double idf(String term, List< List<String>> docs) {
 
         double totalNumOfDocs = 0;//this holds the total number of documents
@@ -75,11 +92,24 @@ public class FeatureExtractor {
         //System.out.println("fraction value = " + value);
         return Math.log10(value);
     }
+    
 
+    /**
+     * Computes the TermFrequency-InverseDocumentFrequency
+     * @param doc 
+     * @param allDocsList
+     * @param term
+     * @return 
+     */
     public static double tfIdf(String doc, List<List<String>> allDocsList, String term) {
         return tf(term, doc) * idf(term, allDocsList);
     }
 
+    /**
+     * A call to the porter stemmer algorithm
+     * @param word   the word to be stemmed
+     * @return     the stemmed value of the word
+     */
     public static String callStemmer(String word) {
         Stemmer stemmer = new Stemmer();
 
@@ -95,6 +125,11 @@ public class FeatureExtractor {
         return stemmer.toString();//gets the base formats in String.
     }
 
+    /**
+     * simply converts text files into string format
+     * @param file the file object
+     * @return  the string format
+     */
     public String FileContentInStringFormat(File file) {
 
         String fileContentInString = null;
@@ -120,6 +155,11 @@ public class FeatureExtractor {
 
     }
 
+    /**
+     * Helps to compute the frequency of each word in the given text...in bag of words model
+     * @param text  the text or document in string format
+     * @return an HashMap that maps each word to its frequency
+     */
     public HashMap<String, Integer> getWordFrequencies(String text) {
 
         HashMap<String, Integer> wordFreqMap = new HashMap<>();

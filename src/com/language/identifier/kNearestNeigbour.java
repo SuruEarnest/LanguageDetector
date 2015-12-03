@@ -18,13 +18,19 @@ import java.util.Map;
  * @version     1.0                
  * @since       2015-12-02         
  */
+
 public class kNearestNeigbour extends DataSet {
 
     private int k;
     //private DataSet dataObj = new DataSet();
     private List<List<Double>> trainingDocVectorList; //= new ArrayList<>();
     private HashMap<String, List<Double>> documentToDocVectorMap;//= new HashMap<>();
-
+/**
+ * <p>This constructor simply helps to specify the value 
+ * of the number of neighbours to consider in the classification task<p>
+ * 
+ * @param k  the  number of nearest neighbours to consider
+ */
     public kNearestNeigbour(int k) {
 
         this.k = k;
@@ -38,6 +44,7 @@ public class kNearestNeigbour extends DataSet {
         return this.documentToDocVectorMap;
     }
 
+    //this method simply helps to generate a vector from each training document
     private void generateTrainingDocVectorList(List<List<String>> allDocsList) {
         //get a list of the feature vectors of all the training documents
         for (int i = 0; i < allDocsList.size(); i++) {
@@ -55,10 +62,20 @@ public class kNearestNeigbour extends DataSet {
         }
     }
 
+    /**
+     * This helps to compute a list of vectors from the training documents
+     * @return the list of vector format of each training document
+     */
     public List<List<Double>> getTrainingDocVectorList() {
         return this.trainingDocVectorList;
     }
 
+    /**
+     * <p>This simply helps to train the KNN algorithm by making calls to
+     * {@link #loadTrainingData() },{@link #buildVocabulary(HashMap<String, ArrayList<String>> trainingDocs) 
+     * and {@link #generateTrainingDocVectorList(List<List<String>> allDocsList) }}
+     * <p>
+     */
     public void trainKNN() {
         //must be called before ever attempting to predict
         loadTrainingData();
@@ -67,6 +84,7 @@ public class kNearestNeigbour extends DataSet {
         //System.out.println("FINISHED TRAINING KNN!");
 
     }
+    
 
     private static String transformDocumentVectorToDocumentText(HashMap<String, List<Double>> docToDocVectorMap, List<Double> documentVector) {
         //get dccumentText given the documentVector using the documentToDocVectorMap
@@ -131,6 +149,11 @@ public class kNearestNeigbour extends DataSet {
 
     }
 
+    /**
+     * This method is responsible for the prediction of new test data instances
+     * @param inst    a new test data instance object
+     * @return the language the new test data instance belongs
+     */
     public String predict(Instance inst) {
 
         String testDataInString = inst.loadData();
@@ -242,5 +265,7 @@ public class kNearestNeigbour extends DataSet {
 //        Instance inst = new Instance("There is a way to go about things like that");
 //        String lang = knn.predict(inst);
 //        System.out.println(lang);
+//        
+//       
 //    }
 }

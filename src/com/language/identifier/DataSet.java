@@ -101,7 +101,9 @@ public class DataSet {
 
         ArrayList<String> igboDocs = new ArrayList<>();
 
-        String igboDocs1 = "Ajọ Ifufe Joaquin (Spanish pronunciation: [xwa'kin] wah-nkọ) [1] bụ ifịk extratropical naa n'elu ugwu Atlantic Ocean ugbu a egwu Iberian Peninsula. Ọ idiọk impacted nnukwu akụkụ nke Bahamas na nso nso emetụta Bermuda. Ọ bụ otu ụzọ n'ụzọ iri aha ya bụ oké mmiri ozuzo, atọ hurricane na nke abụọ isi hurricane nke 2015 Atlantic hurricane oge. Si a na-abụghị ebe okpomọkụ ala, Joaquin mbụ nkewa a okpomọkụ ịda mbà n'obi na September 28, ọma n'ebe ndịda ọdịda anyanwụ nke Bermuda. Na ike ifufe shiee akwụgo ịda mbà n'obi ibido otụhọde ike mgbe na-akpụ akpụ ji nwayọọ nwayọọ na ndịda ọdịda anyanwụ. Mgbe ịghọ a okpomọkụ oké ifufe na-esote ụbọchị, Joaquin wara a frasi nke ngwangwa intensification n'elu-ekpo ọkụ oké osimiri okpomọkụ na abating shiee, na-eru hurricane ọnọdụ na September 30 na isi hurricane ike on October 1. Meandering n'elu ndịda Bahamas, Joaquin anya gafere nso ma ọ bụ n'elu ọtụtụ agwaetiti n'elu na-esonụ ụbọchị abụọ. On October 3 na hurricane ebelatawo dịtụ na accelerated ugwu ọwụwa anyanwụ. Mberede re-intensification malitere mgbe e mesịrị n'ụbọchị ahụ, na Joaquin enwetara nyere ifufe nke 155 mph (250 km / h), emejupụta ya elu ike. Nke a mere ka ọ ike Atlantic hurricane ebe Ajọ Ifufe Igor ke 2010.\n"
+        String igboDocs1 = "Ajọ Ifufe Joaquin (Spanish pronunciation: [xwa'kin] wah-nkọ) [1] bụ ifịk extratropical naa n'elu ugwu Atlantic Ocean ugbu a egwu Iberian Peninsula. Ọ idiọk impacted nnukwu akụkụ nke Bahamas na nso nso emetụta Bermuda. Ọ bụ otu ụzọ n'ụzọ iri aha ya bụ oké mmiri ozuzo, atọ hurricane na nke abụọ isi hurricane nke 2015 Atlantic hurricane oge. Si a na-abụghị ebe okpomọkụ ala, Joaquin mbụ nkewa a okpomọkụ ịda mbà n'obi na September 28, ọma n'ebe ndịda ọdịda anyanwụ nke Bermuda. Na ike ifufe shiee akwụgo ịda mbà n'obi ibido otụhọde ike mgbe na-akpụ akpụ ji nwayọọ nwayọọ na ndịda ọdịda anyanwụ. Mgbe ịghọ a okpomọkụ oké ifufe na-esote ụbọchị, Joaquin wara a frasi nke ngwangwa intensification n'elu-ekpo ọkụ oké osimiri okpomọkụ na abating shiee, na-eru hurricane ọnọdụ na September 30 na isi hurricane ike on October 1. Meandering n'elu ndịda Bahamas, Joaquin anya gafere nso ma ọ bụ n'elu ọtụtụ agwaetiti n'elu na-esonụ ụbọchị abụọ. On October 3 na hurricane ebelatawo dịtụ na accelerated ugwu ọwụwa anyanwụ. "
+                + "Mberede re-intensification malitere mgbe e mesịrị n'ụbọchị ahụ, na Joaquin enwetara nyere ifufe nke 155 mph (250 km / h), emejupụta "
+                + "ya elu ike. Nke a mere ka ọ ike Atlantic hurricane ebe Ajọ Ifufe Igor ke 2010.\n"
                 + "\n"
                 + "Ajọ Ifufe ịdọ aka ná ntị a zụlitere gafee ukwuu nke Bahamas on September 30 dị ka hurricane egwu mba. Etipú mba n'ebe ndịda agwaetiti ihe karịrị ụbọchị abụọ, Joaquin mere ọtụtụ mbibi; Acklins, gbagọrọ agbagọ Island, Long Island, Rum Cay na San Salvador Island kwagidere ndị kasị njọ mebiri. Obodo ndị fọdụrụ dịpụrụ adịpụ na idei mmiri ruo ọtụtụ ụbọchị. Offshore na n'ụgbọ mmiri El Faro wee na-efu na 33 oru ugbo; mgbe ọtụtụ enyocha United States Coast Nche-ekwere na arịa yiri kpuo. E mesịa, ndị ike gwụ hurricane gafere nnọọ n'ebe ọdịda anyanwụ Bermuda, buffeting agwaetiti na ike ifufe mere ka ike he na obere mebiri.\n";
         String igboDocs2 = "30 September 2015, Russia malitere a agha aka na Siria Civil War. [59] Ọ ẹkewetde nke ikuku etiwapụ site Russia megide agha dị iche iche na-emegide Siria ọchịchị, isi al-gakwuuru Front na Jaysh al-Fatah (ndị agha imeri) . [60] [61] [62] Russian agha nwere ịrịba n'ala nkwado si Iranian n'ala agha, Siria agha, na-ejikọ militias. [63] Tupu aka, Russian itinye aka na Siria Civil Agha tumadi ẹkewetde nke jikeere na Siria Army. [64] Russia na-etinye aka mgbe a iwu arịrịọ si Siria ọchịchị agha enyemaka megide nnupụisi na jihadist iche iche na Syria. [65] Kasị Russia si airstrikes n'oge izu mbụ nke mkpọsa gburu ebe ẹkenịmde nnupụisi iche iche na-emegide ma ndị Siria ọchịchị na islam State nke Iraq na Levant. [66] [67] [68] [69] [70] [71]\n"
@@ -119,10 +121,12 @@ public class DataSet {
         igboDocs.add(igboDocs2);
 
         ArrayList<String> yorubaDocs = new ArrayList<>();
-        String yorubaDoc1 = "Iji lile Joaquin jẹ ohun ti nṣiṣe extratropical olóoru lori awọn ariwa okun kariaye ti Atlantic Lọwọlọwọ idẹruba awọn Iberian ile larubawa. O ṣofintoto kikan tobi awọn ẹya ti awọn Bahamas ki o si laipe fowo Bermuda. O ni idamẹwa ti a npè ni iji, kẹta Iji lile ati keji pataki Iji lile ti awọn 2015 Atlantic Iji lile akoko. Atilẹba lati a ti kii-Tropical kekere, Joaquin a ti akọkọ classified a Tropical şuga on September 28, daradara oorun guusu ti Bermuda. Pẹlu lagbara afẹfẹ rirẹ-aloft awọn şuga lakoko ti gbiyanju lati teramo nigba ti gbigbe laiyara oorun guusu. Lẹhin ti di a Tropical iji, ọjọ kejì ni Joaquin lọ alakoso a ti dekun intensification lori gbona okun iwọn otutu pẹlu abating rirẹ-, nínàgà Iji lile ipo lori Kẹsán 30 Iji lile ati pataki agbara on October 1. Meandering lori awọn gusu Bahamas, Joaquin ká oju koja sunmo si tabi lori orisirisi awọn erekusu lori awọn wọnyi ọjọ meji. Lori October 3 awọn Iji weakened bikita ati onikiakia lati Ariwa. Abrupt re-aiyede ti intensification nigbamii ti ọjọ, ati Joaquin ti ipasẹ sustained efuufu ti 155 mph (250 km / h), seko awọn oniwe-tente agbara. Eleyi ṣe o Lágbára awọn Atlantic Iji lile niwon Iji lile Yalovecky ni 2010.\n"
+        String yorubaDoc1 = "Iji lile Joaquin jẹ ohun ti nṣiṣe extratropical olóoru lori awọn ariwa okun kariaye ti Atlantic Lọwọlọwọ idẹruba awọn Iberian ile larubawa. O ṣofintoto kikan tobi awọn ẹya ti awọn Bahamas ki o si laipe fowo Bermuda. O ni idamẹwa ti a npè ni iji, kẹta Iji lile ati keji pataki Iji lile ti awọn 2015 Atlantic Iji lile akoko. Atilẹba lati a ti kii-Tropical kekere, Joaquin a ti akọkọ classified a Tropical şuga on September 28, daradara oorun guusu ti Bermuda. Pẹlu lagbara afẹfẹ rirẹ-aloft awọn şuga lakoko ti gbiyanju lati teramo nigba ti gbigbe laiyara oorun guusu. Lẹhin ti di a Tropical iji, ọjọ kejì ni Joaquin lọ alakoso a ti dekun intensification lori gbona okun iwọn otutu pẹlu abating rirẹ-, nínàgà Iji lile ipo lori Kẹsán 30 Iji lile ati pataki agbara on October 1. Meandering lori awọn gusu Bahamas, Joaquin ká oju koja sunmo si tabi lori orisirisi awọn erekusu lori awọn wọnyi ọjọ meji. Lori October 3 awọn Iji weakened bikita ati onikiakia lati Ariwa. Abrupt re-aiyede ti intensification nigbamii ti ọjọ, ati Joaquin ti ipasẹ sustained "
+                + "\fuufu ti 155 mph (250 km / h), seko awọn oniwe-tente agbara. Eleyi ṣe o Lágbára awọn Atlantic Iji lile niwon Iji lile Yalovecky ni 2010.\n"
                 + "\n"
                 + "Iji lile ikilo ni won dide kọja Elo ti awọn Bahamas on September 30 bi awọn Iji ewu awọn orilẹ-ede. Battering awọn orilẹ-ède ká erekusu gusu fun ju meji ọjọ, Joaquin ṣẹlẹ sanlalu devastation; Acklins, ayida Island, Long Island, Ọti Cay ati San Salvador Island sustained awọn buru bibajẹ. Awọn agbegbe won ti ya sọtọ ati ki o kù flooded fun orisirisi awọn ọjọ. Nsise awọn laisanwo omi El Faro lọ sonu pẹlu 33 atuko; lẹhin sanlalu wiwa awọn United States ni etikun Guard gbagbo awọn ha seese rì. Lẹyìn awọn weakening Iji lile koja kan oorun ti Bermuda, ìjìyà tí erekusu pẹlu lagbara efuufu ti o ṣẹlẹ agbara gige ati kekere bibajẹ.\n"
-                + "Lori September 25, 2015, awọn US National Iji lile Centre (metadinlogun) bẹrẹ mimojuto ohun oke-ipele kekere, de pelu a dada trough, orisirisi awọn ọgọrun km guusu-oorun guusu ti Bermuda fun ṣee ṣe Tropical cyclogenesis. [2] The eto maa ti sọ di ọkan bi o ti drifted ariwa-Ariwa, ra a titi dada kekere pẹ lori Kẹsán 26. [3] Convective aṣayan iṣẹ-ṣiṣe-ojo ati thunderstorms-ni imurasilẹ pọ on Kẹsán 27, ati ni 03:00 UTC on September 28 metadinlogun iwon ni eto lati ti di a Tropical şuga, o le je ni aijọju 405 mi (650 km) oorun guusu ti Bermuda. [4] [5] [6] Biotilejepe awọn şuga ifihan a daradara-telẹ kekere, lagbara afẹfẹ rirẹ-nipo convection ati ki o fara awọn san. A Oke si ariwa ti a apesile lati da ori awọn eto laiyara Ariwa sinu a ekun ti o ga rirẹ-; meteorologists ni metadinlogun wa lakoko fihan awọn eto dissipating laarin wakati 96 da lori modeli depictions. [5] Convection ni idagbasoke ati ki o taku jo si san aarin jakejado September 28, [7] ati ki o tete lori Kẹsán 29 Dvorak satẹlaiti Oriṣi itọkasi awọn eto lati ti di a Tropical iji. O ti a yàn awọn orukọ Joaquin accordingly, awọn idamẹwa ti a npè ni iji ti awọn akoko. [8] [9]\n"
+                + "Lori September 25, 2015, awọn US National Iji lile Centre (metadinlogun) bẹrẹ mimojuto ohun oke-ipele kekere, de pelu a dada trough, orisirisi awọn ọgọrun km guusu-oorun guusu ti Bermuda fun ṣee ṣe Tropical cyclogenesis. [2] The eto maa ti sọ di ọkan bi o ti drifted ariwa-Ariwa, ra a titi dada kekere pẹ lori Kẹsán 26. [3] Convective aṣayan iṣẹ-ṣiṣe-ojo ati thunderstorms-ni imurasilẹ pọ on Kẹsán 27, ati ni 03:00 UTC on September 28 metadinlogun iwon ni eto lati ti di a Tropical şuga, o le je ni aijọju 405 mi (650 km) oorun guusu ti Bermuda. [4] [5] [6] Biotilejepe awọn şuga ifihan a daradara-telẹ kekere, lagbara afẹfẹ rirẹ-nipo convection ati ki o fara awọn san. A Oke si ariwa ti a apesile lati da ori awọn eto laiyara Ariwa sinu a ekun ti o ga rirẹ-; meteorologists ni metadinlogun wa lakoko fihan awọn eto dissipating laarin wakati 96 da lori modeli depictions. [5] Convection ni idagbasoke ati ki o taku jo si san aarin jakejado September 28, [7] ati ki o tete lori Kẹsán 29 Dvorak satẹlaiti Oriṣi itọkasi awọn eto lati ti di a Tropical iji. O ti a yàn awọn orukọ "
+                + "Joaquin accordingly, awọn idamẹwa ti a npè ni iji ti awọn akoko. [8] [9]\n"
                 + "Okun ti awọn aarin-ipele Oke ọ a lojiji naficula ni Joaquin ká afokansi si guusu, darí o si ọna The Bahamas. [8] [10] forecasters ni metadinlogun woye akude aidaniloju ni ojo iwaju ti Joaquin, pẹlu apesile si dede depicting a jakejado ibiti o ti o ṣeeṣe. [11] Jakejado September 29 awọn iji ni imurasilẹ buru bi awọn oniwe-san di ifibọ laarin jin convection ati oke-ipele outflow di increasingly oguna. [12] High okun dada awọn iwọn otutu ati rirẹ-dinku o ràn okun, ati ki o tete lori Kẹsán 30 awọn iji waye Iji lile Ipo. [13] [14] Dekun intensification aiyede ti naa pẹlu ohun oju sese laarin a to dogba aringbungbun ipon overcast. Data lati ofurufu reconnaissance fihan wipe Joaquin ami Category 3 ipo lori awọn Saffir-Simpson Iji lile afẹfẹ asekale nipa 03:00 UTC on October 1. [15] Ni ayika 15:00 UTC awọn oju ti Joaquin kọja lori Samana Cay, Bahamas, pẹlu efuufu ti 125 mph (205 km / h). [16] Wakati nigbamii awọn eto siwaju buru si Ẹka 4 ipo, attaining o pọju sustained efuufu ti 130 mph (215 km / h), bi awọn oniwe-oju isunki lati 41 si 27 mi (66 si 43 km) ni opin. [17] [18] Ni akoko yi Joaquin a be o kan 15 mi (25 km) Ariwa ti wíwọ Island. [19] Awọn iji ká aringbungbun titẹ bottomed jade ni 931 mbar (hPa; 27,49 inHg) ni ayika 00: 00 UTC on October 2. [20]\n"
                 + "\n"
                 + "Bi awọn Oke tẹlẹ metalelogun ti Joaquin guusu bẹrẹ retreating ariwa, awọn Iji ká ronu slowed ati lo si-õrùn, ati nigbamii ariwa, on tete Oṣù 2. [21] [22] An eyewall rirọpo ọmọ-a ilana ti yoo mu a keji, o tobi oju ndagba nigba ti awọn akojọpọ oju-collapses bẹrẹ wipe owurọ, o [23] awọn oniwe-oju di increasingly aisan telẹ ni aworan satelaiti. [22] Iwonba weakening mu ibi accordingly, [24] ati awọn Iji kọja lori Ọti Cay ati San Salvador Island ni ayika 18:00 UTC ati 21:00 UTC bi a kekere-opin Ẹka 4 ati ki o ga-opin Category 3 lẹsẹsẹ; [25] a titẹ nitosi 944 mbar (hPa; 27,88 inHg) ti a woye on San Salvador Island. [26] An amplifying trough lori awọn Southeastern United States ti mu dara si southwesterly sisan lori Joaquin on October 3 ati ọ awọn Iji lati mu yara Ariwa kuro lati awọn Bahamas. [27] Jakejado awọn ọjọ awọn iji ká oju di increasingly telẹ ki o si tun-intensification aiyede ti. [28] Aircraft reconnaissance ri a ni riro ni okun eto ti Friday; da lori flight-ipele efuufu ti 166 mph (267 km / h), o ti wa ni ifoju-wipe Joaquin seese dada efuufu ti 155 mph (250 km / h) Olódì ga-opin Category 4 Iji lile-nipa 16:00 UTC. [29 ]\n"
@@ -242,10 +246,11 @@ public class DataSet {
     }
 
     /**
-     * <>this helps to obtain the number of training documents in a language category/class<>
+     * <p>this helps to obtain the number of training documents in a language category/class<p>
      * @param specLangClass   
      * <p>this variable is used to specify the language category/class.
-     *  the value specified is used as a key to get the arrayList of documents in that class
+     *  the value specified is used as a key to get the arrayList of documents in that class,
+     * then the size is computed and returned
      * <p>
      * @return the number of documents (integer type )in the specified class is returned as expected
      */
@@ -258,6 +263,12 @@ public class DataSet {
         return langClassList.size();
     }
 
+    /**
+     * 
+     * @param specLangClass 
+     * <p> this variable is used to specify the language category<p>
+     * @return  a concatenated string of all the hard coded training documents(in string format) for the specified language category
+     */
     public String allDocsInClass(String specLangClass) {
         String docString = "";
         FeatureExtractor fe = new FeatureExtractor();
@@ -276,6 +287,17 @@ public class DataSet {
         return docString;
     }
 
+    /**
+     * <p>
+     * This method simply helps to generate a vocabulary f all tokens(which is a set) 
+     * from a collection of all the training documents(in string format)
+     * <p>
+     * @param trainingDocs  <p> uses the trainingDocs HashMap to generate the vocabulary
+     * NOTE:trainingDocs is an HashMap that maps each language category(of string type) 
+     * to an array list of training documents(of string type) belonging to each language class
+     * <p>
+     */
+    
     public void buildVocabulary(HashMap<String, ArrayList<String>> trainingDocs) {
         Iterator it = trainingDocs.keySet().iterator();
         FeatureExtractor fe = new FeatureExtractor();
@@ -309,7 +331,10 @@ public class DataSet {
         setNumberOfTrainigDocs(numOfDocs);
 
     }
-
+/**
+ * this simply helps to update the vocabulary
+ * @param textDocument 
+ */
     public void updateVocabulary(String textDocument) {
         FeatureExtractor fe = new FeatureExtractor();
         String tokens[] = fe.preProcess(textDocument).split(" ");//splitting upon whitespace
@@ -320,15 +345,27 @@ public class DataSet {
         }
     }
 
+    /**
+     * Gets a list of all the documents
+     * @return  a list of all the list of documents
+     */
     public List<List<String>> getAllDocsList() {
         //a list of all the training documents
         return this.allDocsList;
     }
 
+    /**
+     * {@link #buildVocabulary(java.util.HashMap)} must have been called before calling this method
+     * @return the vocabulary set generated from all the training documents
+     */
     public Set<String> getVocabulary() {
         return this.vocabulary;
     }
 
+    /**
+     * Converts the vocabulary set {@link #getVocabulary()} into string format
+     * @return a string format containing all the elements of the vocabulary set 
+     */
     public String vocabularyToString() {
 
         String vocabString = "";
@@ -341,6 +378,11 @@ public class DataSet {
 
     }
 
+    /**
+     * A utility method that simply returns the highest value from a collection of values of double data type
+     * @param val    the specified collection of values
+     * @return  the maximum...the greatest in the collection
+     */
     public double highestValue(Collection<Double> val) {
      
         double valu = 0.0, max = 0.0;
@@ -357,9 +399,17 @@ public class DataSet {
         return max;
     }
 
+    /**
+     * <p>this method simply helps to obtain the language category KEY from the probability HashMap
+     * by specifying the VALUE of the probability
+     * <p>
+     * @param probMap a HashMap that stores the language categories KEYS and the probability values 
+     * @param value specifies the probability value
+     * @return the language KEY with the specified value
+     */
     public String getPredictedLanguage(HashMap<String, Double> probMap, double value) {
 
-        Double d = new Double("" + value + "");
+        Double d = new Double("" + value + "");//converting the primitive double data type into the wrapper class
         String languageKey = null;
 
         for (Map.Entry entry : probMap.entrySet()) {
@@ -373,13 +423,13 @@ public class DataSet {
         return languageKey;
     }
 
-    public static void main(String args[]) {
-
-        DataSet dt = new DataSet();
-        dt.loadTrainingData();
-        dt.buildVocabulary(dt.getTrainingCorpusMap());
-        System.out.println(dt.getAllDocsList());
-        // System.out.println("docs in english= " + dt.allDocsInClass("English"));
-        
-    }
+//    public static void main(String args[]) {
+//
+//        DataSet dt = new DataSet();
+//        dt.loadTrainingData();
+//        dt.buildVocabulary(dt.getTrainingCorpusMap());
+//        System.out.println(dt.getAllDocsList());
+//        // System.out.println("docs in english= " + dt.allDocsInClass("English"));
+//        
+//    }
 }

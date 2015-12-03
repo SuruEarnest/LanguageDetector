@@ -20,18 +20,33 @@ public class NaiveBayes extends DataSet {
     private String language;
     private HashMap<String,Double> naiveBayesProbabilities;
    
+    /**
+     * Some Initializations taking place...here
+     */
     public NaiveBayes() {
      
         naiveBayesProbabilities = new HashMap<>();
      
     }
     
-
+/**
+ * <p>
+ * This method helps to store the naive bayes probabilities for each language class in a HashMap
+ * where the KEYs are the Languages and the Values are the probability values that a text belongs to the particular language
+ * <p>
+ * @param langClassesList  
+ * <p>
+ * this is the array list of language categories/classes
+ * <p>
+ * @param testData  
+ * <p>
+ * this is the text sample which is to be classified into a language class/category
+ * <p>
+ * @return 
+ */
     private HashMap<String, Double> naiveBayesProbabilities(ArrayList<String> langClassesList, String testData) {
         //this computes and maps each langauge category/class to its respective probability given the testData
         ListIterator<String> languageClassesListIt = langClassesList.listIterator();
-
-       
 
         while (languageClassesListIt.hasNext()) {
             String languageClass = languageClassesListIt.next();
@@ -49,6 +64,7 @@ public class NaiveBayes extends DataSet {
         return naiveBayesProbabilities;
     }
 
+    
     private int countInClass(String words, String allDocsInClass) {
 
         int sumOfCount = 0;
@@ -70,24 +86,10 @@ public class NaiveBayes extends DataSet {
         return sumOfCount;
     }
 
+   
     /**
-     * building vocabulary
-     *
-     * use
-     * {@link #buildVocabulary(HashMap<String,ArrayList<String>> trainingDocs)}
-     * to build vocabulary from the given training corpus
-     *
-     * @param trainingDocs represents the training corpus
-     * @return void
-     */
-    /**
-     * getVocabulary() make sure
-     * {@link #buildVocabulary(HashMap<String, ArrayList<String>> trainingDocs)}
-     * is called before ever using {@link #getVocabulary())} to obtain the
-     * vocabulary extracted from the training corpus
-     *
-     *
-     * @return a set of all words extracted from the training corpus
+     * this method helps to make a call to {@link #loadTrainingData()} and {@link #buildVocabulary(HashMap<String, ArrayList<String>> trainingDocs }
+     * <p>That is the training phase of the Naive Bayes Classifier<p>
      */
     public void trainUsingNaiveBayes() {
 
@@ -96,6 +98,15 @@ public class NaiveBayes extends DataSet {
 
     }
 
+    /**
+     *<p> This Method when called simply helps to compute by statistical learning and prediction 
+     * the language of the specified test data instance<p>
+     * @param inst    
+     * <p>
+     * a test data instance object to be predicted 
+     * <p>
+     * @return the predicted language in string format
+     */
     public String predictUsingNaiveBayes(Instance inst) {
 
         String textValue = inst.loadData();

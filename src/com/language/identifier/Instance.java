@@ -25,6 +25,10 @@ public class Instance {
         //for parameterless constructor
     }
 
+    /**
+     * This Constructor helps to specify that the new test data instance is to be read from a text File
+     * @param textFile   the File from which we want to read our test data from
+     */
     public Instance(File textFile) {
         //for a constructor with textFile
 
@@ -51,11 +55,19 @@ public class Instance {
         }
     }
 
+    /**
+     * This Constructor helps to specify that the new test data instance is a String value
+     * @param text   the test data specified as string
+     */
     public Instance(String text) {
         //for a constructor with string value parameter
         this.testDoc = fe.preProcess(text);
     }
 
+    /**
+     * Helps to obtain the value of the test data in string format(even if it was a file that was specified)
+     * @return simply returns the text format of the test data
+     */
     public String loadData() {
         return this.testDoc;
     }

@@ -151,8 +151,9 @@ public class kNearestNeigbour extends DataSet {
 
     /**
      * This method is responsible for the prediction of new test data instances
-     * @param inst    a new test data instance object
-     * @return the language the new test data instance belongs
+     * <p>Make sure{@link #trainKNN()} must have been called before using this method<p>
+     * @param inst  a new test data instance object
+     * @return  the language the new test data instance belongs
      */
     public String predict(Instance inst) {
 
@@ -258,14 +259,14 @@ public class kNearestNeigbour extends DataSet {
         return largest_k_similarities;
     }
 
-//    public static void main(String args[]) {
-//
-//        kNearestNeigbour knn = new kNearestNeigbour(3);
-//        knn.trainKNN();
-//        Instance inst = new Instance("There is a way to go about things like that");
-//        String lang = knn.predict(inst);
-//        System.out.println(lang);
-//        
-//       
-//    }
+    public static void main(String args[]) {
+
+        kNearestNeigbour knn = new kNearestNeigbour(3);
+        knn.trainKNN();
+        Instance inst = new Instance("There is a way to go about things like that");
+        String lang = knn.predict(inst);
+        System.out.println(lang);
+        
+       
+    }
 }

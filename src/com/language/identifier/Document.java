@@ -69,6 +69,7 @@ public class Document {
 
     }
 
+    
     public double vectorMagnitude(List<Double> documentVector) {
 
         double sumOfSquares = 0.0;

@@ -410,7 +410,8 @@ public class DataSet {
      */
     public double highestValue(Collection<Double> val) {
      
-        double valu = 0.0, max = 0.0;
+        double valu = 0.0;
+        double max = 0.0;
         Iterator it = val.iterator();
 
         while (it.hasNext()) {

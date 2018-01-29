@@ -19,7 +19,8 @@ public class FeatureExtractor {
 
     /**
      * <p> This method simply helps to remove every appearance of 
-     * non alphabetic charactersIt also helps to convert the fileContentInString format into lower case<p>
+     * non alphabetic characters.
+     * It also helps to convert the fileContentInString format into lower case<p>
      * @param fileContentInString
      * @return 
      */
